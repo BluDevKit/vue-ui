@@ -44,4 +44,4 @@ jobs:
                 git config --global user.name "Ymaro Blue"
             - run: npm run release
               env:
-                  GITHUB_TOKEN: ${{secrets.VUE_UI_TOKEN}}
+                  GITHUB_TOKEN: ${{secrets.BLU_TOKEN}}
