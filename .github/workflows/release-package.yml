@@ -39,6 +39,9 @@ jobs:
                   scope: "@bludevkit"
             - run: npm ci
             - run: npm run build
+            - run:        
+                git config --global user.email "coding.ymaro@gmail.com"
+                git config --global user.name "Ymaro Blue"
             - run: npm run release
               env:
                   GITHUB_TOKEN: ${{secrets.VUE_UI_TOKEN}}
