@@ -1,36 +1,44 @@
 name: Github Packages UI Library Actions
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
-      - run: npm ci
-      - run: npm test
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.1.1
 
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
-          registry-url: https://npm.pkg.github.com/
-          scope: '@bludevkit'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4.0.2
+
+              with:
+                  node-version: 21
+            - run: npm ci
+            - run: npm test
+
+    publish-gpr:
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            packages: write
+            contents: read
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4.1.1
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4.0.2
+
+              with:
+                  node-version: 21
+                  registry-url: https://npm.pkg.github.com/
+                  scope: "@bludevkit"
+            - run: npm ci
+            - run: npm run build
+            - run: npm run release
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
