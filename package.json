@@ -33,6 +33,10 @@
     "files": [
         "dist"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BluDevKit/vue-ui.git"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc && vite build",
