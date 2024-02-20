@@ -1,21 +1,36 @@
-import type { StorybookConfig } from "@storybook/vue3-vite";
+import type { StorybookConfig } from '@storybook/vue3-vite';
+import { fileURLToPath, URL } from 'url';
 
 const config: StorybookConfig = {
-    stories: [
-        "../src/**/*.mdx", 
-        "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-    ],
-    addons: [
-        "@storybook/addon-links",
-        "@storybook/addon-essentials",
-        "@storybook/addon-interactions",
-    ],
     framework: {
-        name: "@storybook/vue3-vite",
-        options: {},
+        name: '@storybook/vue3-vite',
+        options: {
+            builder: {
+                viteConfigPath: fileURLToPath(new URL('./viteStorybook.config.ts', import.meta.url)),
+            }
+        },
     },
     docs: {
-        autodocs: "tag",
+        autodocs: 'tag',
+        docsMode: false,
     },
+    stories: [
+        {
+            titlePrefix: 'Vue UI/',
+            directory: '../src/components',
+            files: '**/*.stories.@(js|jsx|ts|tsx)',
+        },
+        {
+            titlePrefix: 'Guide/',
+            directory: './guide',
+            files: '**/*.mdx',
+        },
+    ],
+    addons: [
+        '@storybook/addon-essentials',
+        '@storybook/addon-interactions',
+        'storybook-addon-pseudo-states',
+    ],
 };
 export default config;
+
