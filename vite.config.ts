@@ -1,4 +1,4 @@
-import path from 'path';
+import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -8,7 +8,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: [
-                path.resolve(__dirname, './src/blu-dev-kit.ts'),
+                resolve(__dirname, './src/blu-dev-kit.ts'),
             ],
             formats: ['es', 'cjs'],
         },
@@ -32,9 +32,9 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src'),
-            '@interfaces': path.resolve(__dirname, './interfaces'),
-            '@public': path.resolve(__dirname, './public'),
+            '@': resolve(__dirname, './src'),
+            '@interfaces': resolve(__dirname, './interfaces'),
+            '@public': resolve(__dirname, './public'),
         },
         extensions: ['.ts', '.vue', '.json', '.js'],
     },

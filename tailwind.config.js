@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-import forms from "@tailwindcss/forms"
 
+import tailwindConfig from './public/tailwind.config.js'
 export default {
     content: [
-        "./src/**/*.{vue,js,ts,jsx,tsx}",
-        "./public/**/*.{vue,js,ts,jsx,tsx}",
-        './node_modules/@blu/dev-kit/**/*.vue',
+        ...tailwindConfig.content,
     ],
+    theme: {
+        extend: {
+            ...tailwindConfig.theme.extend,
+        },
+    },
     plugins: [
-        forms,
+        ...tailwindConfig.plugins,
     ],
 }
 
