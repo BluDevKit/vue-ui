@@ -103,7 +103,7 @@ export function extractArgTypes(component: any) {
                         // labels: { undefined: '𝘶𝘯𝘥𝘦𝘧𝘪𝘯𝘦𝘥' },
                         // value: options[0],
                     };
-                } else if (type.summary === 'unknown') { // todo: set control type
+                } else if (type?.summary === 'unknown') { // todo: set control type
                     inputType.control = {
                         type: 'text',
                     };
