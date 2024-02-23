@@ -29,7 +29,7 @@ const config: StorybookConfig = {
     addons: [
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
-        'storybook-addon-pseudo-states',
+        // 'storybook-addon-pseudo-states',
     ],
 };
 export default config;
