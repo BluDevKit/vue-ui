@@ -1,45 +1,88 @@
-<template>
-    <button type="button" :class="classes" @click="onClick" :style="style" class="bg-red-500 px-4 py-2">
-        {{ label }}
-    </button>
-</template>
-
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { mergeClasses } from '@/utils/tailwindMerge'
+import { usePaddingSizes } from '@/composables/paddingSizes';
 
-const props = withDefaults(defineProps<{
-    /**
-     * The label of the button
-     */
-    label: string,
-    /**
-     * primary or secondary button
-     */
-    primary?: boolean,
+interface BluButtonProps {
     /**
      * size of the button
      */
-    size?: 'small' | 'medium' | 'large',
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
     /**
-     * background color of the button
+     * type of the button
      */
-    backgroundColor?: string,
+    type?: 'button' | 'submit' | 'reset',
     /**
-     * classes of the button
+     * classes to overwrite classes for the button
      */
-    classes?: string	
-}>(), { primary: false });
+    twClasses?: string,
+    /**
+     * whether the button is disabled
+     */
+    disabled?: boolean,
+    /**
+     * whether the button is loading
+     */
+    loading?: boolean,
+    /**
+     * whether the button is full width
+     */
+    fullWidth?: boolean,
+}
 
-const emit = defineEmits<{
-    (e: 'clickEmit', id: number): void;
-}>();
+withDefaults(defineProps<BluButtonProps>(), {
+    type: 'button',
+    size: 'md',
+})
 
-const style = computed(() => ({
-    backgroundColor: props.backgroundColor
-}));
+interface bluButtonSlots {
+    /**
+     * Slot for left icon
+     */
+    leftIcon?: string,
+    /**
+     * Slot for label
+     */
+    default?: string,
+    /**
+     * Slot for loading icon
+     */
+    loadingIcon?: string,
+    /**
+     * Slot for right icon
+     */
+    rightIcon?: string,
+}
 
-const onClick = () => {
-    emit("clickEmit", 1)
-};
+defineSlots<bluButtonSlots>()
 
 </script>
+
+<template>
+    <button 
+        :type="type"
+        :disabled="disabled || loading"
+        :class="[
+            mergeClasses(
+                [
+                    usePaddingSizes(size).value, 
+                    'flex justify-between gap-1 transition-all bg-blu-400 hover:brightness-90 disabled:bg-opacity-50 disabled:cursor-not-allowed items-center',
+                ],
+                twClasses || ''
+            ),
+        ]"
+    >
+        <slot name="leftIcon"></slot>
+        
+        <slot />
+        
+        <span v-if="loading" class="animate-spin">
+            
+            <slot name="loadingIcon">
+                🔃
+            </slot>
+        </span>
+
+        <slot name="rightIcon"></slot>
+    </button>
+</template>
+

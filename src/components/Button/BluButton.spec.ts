@@ -1,15 +1,15 @@
 import { expect, describe, it } from 'vitest';
 import { mount } from '@vue/test-utils';
-import WBButtonVue from './BluButton.vue';
+import BluButton from './BluButton.vue';
 
 describe('Button', () => {
   it('renders with label, style and classes', () => {
-    const wrapper = mount(WBButtonVue, {
+    const wrapper = mount(BluButton, {
         props: {
-            label: 'Test Button',
-            primary: true,
-            size: 'large',
-            backgroundColor: 'blue'
+            size: 'lg',
+        },
+        slots: {
+            default: 'Test Button'
         }
     });
 
