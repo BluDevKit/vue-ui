@@ -34,7 +34,7 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "vue-tsc --noEmit && vite build",
+        "build": "npm run lint && vue-tsc --noEmit && vite build",
         "build:all": "npm run build && npm run storybook:build",
         "preview": "vite preview",
         "storybook": "storybook dev --no-open -p 6006",
@@ -42,12 +42,13 @@
         "storybook:build": "storybook build -o .storybook/build && xcopy /Y .storybook\\build dist\\storybook",
         "storybook:build:serve": "npm run storybook:build && npm run storybook:serve-build",
         "release": "standard-version && git push --follow-tags && npm publish",
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "lint": "eslint --ext .ts,.vue src --fix"
     },
     "peerDependencies": {
-        "vue": "^3.4.15",
         "@tailwindcss/forms": "^0.5.7",
-        "tailwindcss": "^3.4.1"
+        "tailwindcss": "^3.4.1",
+        "vue": "^3.4.15"
     },
     "devDependencies": {
         "@storybook/addon-essentials": "^8.0.0-beta.4",
@@ -60,9 +61,13 @@
         "@storybook/vue3": "^8.0.0-beta.4",
         "@storybook/vue3-vite": "^8.0.0-beta.4",
         "@types/node": "^20.11.19",
+        "@typescript-eslint/eslint-plugin": "^7.0.2",
+        "@typescript-eslint/parser": "^7.0.2",
         "@vitejs/plugin-vue": "^5.0.3",
         "@vue/test-utils": "^2.4.4",
         "autoprefixer": "^10.4.17",
+        "eslint": "^8.57.0",
+        "eslint-plugin-vue": "^9.22.0",
         "http-server": "^14.1.1",
         "postcss": "^8.4.35",
         "postcss-cli": "^11.0.0",
