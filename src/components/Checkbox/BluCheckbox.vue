@@ -28,9 +28,9 @@ interface BluCheckboxProps {
     value: string | boolean | number;
 
     /**
-     * size of the button
+     * model value of input field
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    modelValue: boolean;
 
     /**
      * classes to overwrite classes for the button
@@ -41,17 +41,11 @@ interface BluCheckboxProps {
      * whether the button is disabled
      */
     disabled?: boolean;
-
-    /**
-     * model value of input field
-     */
-    modelValue?: boolean;
 }
 
 withDefaults(defineProps<BluCheckboxProps>(), {
-    size: 'md',
     labelLocation: 'right',
-    value: false,
+    modelValue: false,
 });
 
 const model = defineModel();
@@ -70,7 +64,6 @@ const model = defineModel();
             :name="name || id"
             type="checkbox"
             :disabled="disabled"
-            :value="value"
             :class="[
                 mergeClasses(
                     [

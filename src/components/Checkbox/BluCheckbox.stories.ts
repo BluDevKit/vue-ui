@@ -8,7 +8,6 @@ const meta: Meta<typeof BluCheckbox> = {
     tags: ['autodocs'],
     args: {
         id: 'checkbox',
-        size: 'md',
         label: 'Checkbox',
     },
 };
