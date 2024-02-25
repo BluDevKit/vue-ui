@@ -1,88 +1,83 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge'
+import { mergeClasses } from '@/utils/tailwindMerge';
 import { usePaddingSizes } from '@/composables/paddingSizes';
 
 interface BluButtonProps {
     /**
      * size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl',
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     /**
      * type of the button
      */
-    type?: 'button' | 'submit' | 'reset',
+    type?: 'button' | 'submit' | 'reset';
     /**
      * classes to overwrite classes for the button
      */
-    twClasses?: string,
+    twClasses?: string;
     /**
      * whether the button is disabled
      */
-    disabled?: boolean,
+    disabled?: boolean;
     /**
      * whether the button is loading
      */
-    loading?: boolean,
+    loading?: boolean;
     /**
      * whether the button is full width
      */
-    fullWidth?: boolean,
+    fullWidth?: boolean;
 }
 
 withDefaults(defineProps<BluButtonProps>(), {
     type: 'button',
     size: 'md',
-})
+});
 
 interface bluButtonSlots {
     /**
      * Slot for left icon
      */
-    leftIcon?: string,
+    leftIcon?: string;
     /**
      * Slot for label
      */
-    default?: string,
+    default?: string;
     /**
      * Slot for loading icon
      */
-    loadingIcon?: string,
+    loadingIcon?: string;
     /**
      * Slot for right icon
      */
-    rightIcon?: string,
+    rightIcon?: string;
 }
 
-defineSlots<bluButtonSlots>()
-
+defineSlots<bluButtonSlots>();
 </script>
 
 <template>
-    <button 
+    <button
         :type="type"
         :disabled="disabled || loading"
         :class="[
             mergeClasses(
                 [
-                    usePaddingSizes(size).value, 
+                    usePaddingSizes(size).value,
                     'flex justify-between gap-1 transition-all bg-blu-400 hover:brightness-90 disabled:bg-opacity-50 disabled:cursor-not-allowed items-center',
                 ],
                 twClasses || ''
             ),
         ]"
     >
-        <slot name="leftIcon"></slot>
-        
+        <slot name="leftIcon" />
+
         <slot />
-        
+
         <span v-if="loading" class="animate-spin">
-            
-            <slot name="loadingIcon">
-                🔃
-            </slot>
+            <slot name="loadingIcon"> 🔃 </slot>
         </span>
 
-        <slot name="rightIcon"></slot>
+        <slot name="rightIcon" />
     </button>
 </template>
-

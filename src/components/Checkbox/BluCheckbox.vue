@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge'
+import { mergeClasses } from '@/utils/tailwindMerge';
 
 interface BluCheckboxProps {
     /**
@@ -7,16 +7,16 @@ interface BluCheckboxProps {
      */
     id: string;
 
-    /** 
-     *  name of input field 
-    */
+    /**
+     *  name of input field
+     */
     name?: string;
 
-    /** 
-     * label of input field 
-    */
+    /**
+     * label of input field
+     */
     label: string;
-    
+
     /**
      * Label location
      */
@@ -25,7 +25,7 @@ interface BluCheckboxProps {
     /**
      * checkbox value
      */
-    value: string | boolean | number; 
+    value: string | boolean | number;
 
     /**
      * size of the button
@@ -36,36 +36,41 @@ interface BluCheckboxProps {
      * classes to overwrite classes for the button
      */
     twClasses?: string;
-    
+
     /**
      * whether the button is disabled
      */
     disabled?: boolean;
+
+    /**
+     * model value of input field
+     */
+    modelValue?: boolean;
 }
 
 withDefaults(defineProps<BluCheckboxProps>(), {
     size: 'md',
     labelLocation: 'right',
     value: false,
-})
+});
 
-const model = defineModel()
+const model = defineModel();
 </script>
 
 <template>
-    <div 
-        class="flex gap-1" 
+    <div
+        class="flex gap-1"
         :class="[
             labelLocation === 'top' ? 'flex-col' : 'flex-row items-center',
         ]"
     >
-        <input 
+        <input
             :id="id"
-            :name="name || id"
-            type="checkbox" 
-            :disabled="disabled" 
-            :value="value"
             v-model="model"
+            :name="name || id"
+            type="checkbox"
+            :disabled="disabled"
+            :value="value"
             :class="[
                 mergeClasses(
                     [
@@ -74,11 +79,10 @@ const model = defineModel()
                     ],
                     twClasses || ''
                 ),
-            ]" 
+            ]"
         />
         <label class="text-sm text-gray-700" :for="id">
             {{ label }}
         </label>
     </div>
 </template>
-
