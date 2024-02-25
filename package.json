@@ -43,7 +43,8 @@
         "storybook:build:serve": "npm run storybook:build && npm run storybook:serve-build",
         "release": "standard-version && git push --follow-tags && npm publish",
         "test": "echo \"Error: no test specified\"",
-        "lint": "eslint --ext .ts,.vue src --fix"
+        "lint": "eslint --ext .ts,.vue src",
+        "lint:fix": "npm run lint -- --fix"
     },
     "peerDependencies": {
         "@tailwindcss/forms": "^0.5.7",
@@ -67,10 +68,13 @@
         "@vue/test-utils": "^2.4.4",
         "autoprefixer": "^10.4.17",
         "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier-vue": "^5.0.0",
         "eslint-plugin-vue": "^9.22.0",
         "http-server": "^14.1.1",
         "postcss": "^8.4.35",
         "postcss-cli": "^11.0.0",
+        "prettier": "^3.2.5",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sass": "^1.71.0",

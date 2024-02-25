@@ -7,7 +7,9 @@
     "extends": [
         // "eslint:recommended",
         // "plugin:@typescript-eslint/recommended",
-        "plugin:vue/vue3-recommended"
+        "plugin:vue/recommended",
+        "plugin:vue/vue3-recommended",
+        "plugin:prettier-vue/recommended"
     ],
     "parser": "vue-eslint-parser",
     "parserOptions": {
@@ -28,8 +30,7 @@
             "error",
             {
                 "html": {
-                    "void": "never",
-                    "normal": "never",
+                    "void": "always",
                     "component": "always"
                 }
             }
@@ -60,8 +61,10 @@
                 "ignoreWhenEmpty": true,
                 "ignores": [
                     "pre",
-                    "textarea"
-                ]
+                    "textarea",
+                    "slot"
+                ],
+                "externalIgnores": []
             }
         ],
         "vue/require-default-prop": "off",
