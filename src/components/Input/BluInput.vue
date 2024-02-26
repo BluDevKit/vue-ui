@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { usePaddingSizes } from '@/composables/paddingSizes';
+import {
+    usePaddingSizes,
+    usePaddingSizePosition,
+} from '@/composables/paddingSizes';
 import { mergeClasses } from '@/utils/tailwindMerge';
 import { computed, reactive } from 'vue';
 
@@ -20,6 +23,11 @@ interface BluInputProps {
     label: string;
 
     /**
+     * whether to show label
+     */
+    showLabel?: boolean;
+
+    /**
      * size of the button
      */
     size?: 'xs' | 'sm' | 'md' | 'lg';
@@ -32,7 +40,15 @@ interface BluInputProps {
     /**
      * type of input field
      */
-    type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'url' | 'hidden';
+    type?:
+        | 'email'
+        | 'number'
+        | 'password'
+        | 'search'
+        | 'tel'
+        | 'text'
+        | 'url'
+        | 'hidden';
 
     /**
      * model value of input field
@@ -68,6 +84,7 @@ interface BluInputProps {
 const props = withDefaults(defineProps<BluInputProps>(), {
     type: 'text',
     size: 'md',
+    showLabel: true,
 });
 
 interface BluInputEmits {
@@ -104,14 +121,22 @@ interface bluInputSlots {
      * Slot for prefix
      */
     prefix?: string;
+
     /**
      * Slot for left icon
      */
     leftIcon?: string;
+
+    /**
+     * Slot for right icon
+     */
+    special?: string;
+
     /**
      * Slot for right icon
      */
     rightIcon?: string;
+
     /**
      * Slot for left prefix
      */
@@ -139,7 +164,7 @@ const dynamicType = computed(() => {
 
 <template>
     <section class="relative flex flex-col gap-1">
-        <label :for="id">
+        <label v-if="showLabel" :for="id">
             {{ label }}
         </label>
         <div class="relative flex h-full">
@@ -155,7 +180,7 @@ const dynamicType = computed(() => {
             </button>
 
             <slot name="leftIcon" />
-            <div class="relative flex w-fit">
+            <div class="relative flex w-full">
                 <input
                     :id="id"
                     v-model="model"
@@ -183,19 +208,27 @@ const dynamicType = computed(() => {
                     @keyup="$emit('inputKeyUp', $event, id)"
                 />
 
-                <span
-                    v-if="type === 'password'"
-                    class="absolute inset-y-0 flex items-center cursor-pointer"
-                    :class="[
-                        size === 'xs' && 'right-1',
-                        size === 'sm' && 'right-2',
-                        size === 'md' && 'right-4',
-                        size === 'lg' && 'right-6',
-                    ]"
-                    @click="togglePassword"
-                >
-                    {{ state.showPassword ? 'Hide' : 'Show' }}
-                </span>
+                <slot name="special">
+                    <span
+                        v-if="type === 'password'"
+                        class="absolute inset-y-0 flex items-center cursor-pointer"
+                        :class="usePaddingSizePosition(size).value"
+                        @click="togglePassword"
+                    >
+                        {{ state.showPassword ? 'Hide' : 'Show' }}
+                    </span>
+
+                    <Transition name="search">
+                        <button
+                            v-if="type === 'search' && model"
+                            class="absolute inset-y-0 flex items-center cursor-pointer"
+                            :class="usePaddingSizePosition(size).value"
+                            @click="model = ''"
+                        >
+                            ❌
+                        </button>
+                    </Transition>
+                </slot>
             </div>
             <slot name="rightIcon" />
 
@@ -212,3 +245,23 @@ const dynamicType = computed(() => {
         </div>
     </section>
 </template>
+<style scoped>
+.search-enter-active,
+.search-leave-active {
+    transition:
+        opacity 0.3s,
+        transform 0.3s;
+}
+.search-enter-from,
+.search-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+</style>

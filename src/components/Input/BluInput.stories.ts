@@ -34,6 +34,12 @@ export const Password: Story = {
     },
 };
 
+export const Search: Story = {
+    args: {
+        type: 'search',
+    },
+};
+
 export const PrefixSuffix: Story = {
     args: {
         prefix: '+31',
