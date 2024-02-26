@@ -4,3 +4,4 @@ export { BluInput } from './Input';
 export { BluRadio } from './Radio';
 export { BluRadioCard } from './RadioCard';
 export { BluSingleSelect } from './SingleSelect';
+export { BluTextarea } from './Textarea';
