@@ -65,6 +65,7 @@ defineSlots<bluButtonSlots>();
                 [
                     usePaddingSizes(size).value,
                     'flex justify-between gap-1 transition-all bg-blu-400 hover:brightness-90 disabled:bg-opacity-50 disabled:cursor-not-allowed items-center',
+                    fullWidth ? 'w-full' : '',
                 ],
                 twClasses || ''
             ),
