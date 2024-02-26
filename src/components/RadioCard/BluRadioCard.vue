@@ -54,14 +54,14 @@ withDefaults(defineProps<BluRadioCardProps>(), {
     size: 'md',
 });
 
-interface bluButtonSlots {
+interface BluRadioCardSlots {
     /**
      * Slot for content
      */
     default?: string;
 }
 
-defineSlots<bluButtonSlots>();
+defineSlots<BluRadioCardSlots>();
 
 const model = defineModel();
 </script>

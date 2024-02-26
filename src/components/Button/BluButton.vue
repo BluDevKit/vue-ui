@@ -34,7 +34,7 @@ withDefaults(defineProps<BluButtonProps>(), {
     size: 'md',
 });
 
-interface bluButtonSlots {
+interface BluButtonSlots {
     /**
      * Slot for left icon
      */
@@ -53,7 +53,7 @@ interface bluButtonSlots {
     rightIcon?: string;
 }
 
-defineSlots<bluButtonSlots>();
+defineSlots<BluButtonSlots>();
 </script>
 
 <template>

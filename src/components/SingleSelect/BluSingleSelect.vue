@@ -75,7 +75,7 @@ interface BluSingleSelectProps {
 
 const props = withDefaults(defineProps<BluSingleSelectProps>(), {});
 
-interface bluButtonSlots {
+interface BluSingleSelectSlots {
     /**
      * Slot for left icon
      */
@@ -94,7 +94,7 @@ interface bluButtonSlots {
     rightIcon?: string;
 }
 
-defineSlots<bluButtonSlots>();
+defineSlots<BluSingleSelectSlots>();
 
 const selectOptions = ref(null);
 const showOptions = ref(false);

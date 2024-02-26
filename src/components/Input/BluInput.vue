@@ -79,6 +79,21 @@ interface BluInputProps {
      * placeholder of input field
      */
     placeholder?: string;
+
+    /**
+     * max length of input field
+     */
+    maxLength?: number;
+
+    /**
+     * whether the input field is required
+     */
+    required?: boolean;
+
+    /**
+     * whether the input field is readonly
+     */
+    readonly?: boolean;
 }
 
 const props = withDefaults(defineProps<BluInputProps>(), {
@@ -191,6 +206,8 @@ const dynamicType = computed(() => {
                     :max="max"
                     :step="step"
                     :placeholder="placeholder"
+                    :maxlength="maxLength"
+                    :required="required"
                     :class="[
                         mergeClasses(
                             [
