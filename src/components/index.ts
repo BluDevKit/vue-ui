@@ -6,3 +6,5 @@ export { BluRadioCard } from './RadioCard';
 export { BluSingleSelect } from './SingleSelect';
 export { BluTextarea } from './Textarea';
 export { BluTabView } from './TabView';
+export { BluToast } from './Toast';
+export type { BluToastProps } from './Toast';

@@ -9,6 +9,7 @@ export default defineConfig({
         lib: {
             entry: [
                 resolve(__dirname, './src/blu-dev-kit.ts'),
+                resolve(__dirname, './src/utils.ts'),
             ],
             formats: ['es', 'cjs'],
         },
