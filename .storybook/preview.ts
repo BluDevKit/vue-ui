@@ -1,9 +1,15 @@
+import { bluDevKitUtils } from './../src/utils/toast';
 import { type Preview, setup } from '@storybook/vue3';
 import { extractArgTypes, updateModelValue } from './helpers';
-import '@storybook/testing-library';
+import '@storybook/test';
 
 import '../src/assets/style.css';
 import './assets/stories.scss';
+import { App } from 'vue';
+
+setup((app: App) => {
+    app.use(bluDevKitUtils);
+});
 
 const preview: Preview = {
     parameters: {
@@ -13,15 +19,11 @@ const preview: Preview = {
                 includeNames: true,
                 order: [
                     'Guide',
-                    [
-                        'What is Blu Dev Kit',
-                        'Getting Started',
-                    ],
+                    ['What is Blu Dev Kit', 'Getting Started'],
                     '*',
                 ],
             },
         },
-        actions: { argTypesRegex: '^on[A-Z].*' },
         controls: {
             matchers: {
                 color: / (background | color)$/i,

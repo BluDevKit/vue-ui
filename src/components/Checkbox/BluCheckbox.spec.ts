@@ -8,6 +8,7 @@ describe('Button', () => {
             props: {
                 id: 'test',
                 label: 'Test Button',
+                value: true,
             },
             slots: {
                 default: 'Test Button',

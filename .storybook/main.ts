@@ -6,8 +6,10 @@ const config: StorybookConfig = {
         name: '@storybook/vue3-vite',
         options: {
             builder: {
-                viteConfigPath: fileURLToPath(new URL('./viteStorybook.config.ts', import.meta.url)),
-            }
+                viteConfigPath: fileURLToPath(
+                    new URL('./viteStorybook.config.ts', import.meta.url)
+                ),
+            },
         },
     },
     docs: {
@@ -28,9 +30,10 @@ const config: StorybookConfig = {
     ],
     addons: [
         '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
         // 'storybook-addon-pseudo-states',
+        '@storybook/addon-interactions',
+        '@storybook/addon-mdx-gfm',
+        '@storybook/addon-themes',
     ],
 };
 export default config;
-
