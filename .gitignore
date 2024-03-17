@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .storybook/build
+bludevkit-vue-ui-*.tgz
 
 # Editor directories and files
 .vscode/*
