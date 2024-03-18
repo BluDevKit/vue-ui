@@ -8,3 +8,4 @@ export { BluTextarea } from './Textarea';
 export { BluTabView } from './TabView';
 export { BluToast } from './Toast';
 export type { BluToastProps } from './Toast';
+export { BluToggle } from './Toggle';
