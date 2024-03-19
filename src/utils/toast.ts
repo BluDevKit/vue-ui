@@ -1,30 +1,25 @@
-import { BluToast } from '@/components';
-import { BluToastProps } from '@/components/Toast/BluToast.vue';
-import { App, createApp, h } from 'vue';
+import { BluToast, BluToastContainer } from '@/components/Toast';
+import type { BluToastProps } from '@/components/Toast';
+import { App, createApp, createVNode, h, render } from 'vue';
 
 let mainApp: App | null = null;
 let container: HTMLElement | null = null;
 const CONTAINER_ID = 'toast-overlay' as const;
+
+interface BluToastOptions {
+    maxToasts: string;
+}
+
 export const bluDevKitUtils: any = {
-    install(app: App) {
+    install(app: App, options: BluToastOptions) {
         mainApp = app;
 
-        const toastContainer = document.createElement('section');
-        toastContainer.id = CONTAINER_ID;
-        toastContainer?.setAttribute(
-            'class',
-            'fixed inset-0 z-50 pointer-events-none'
-        );
-        toastContainer.innerHTML = `
-            <div id="top-left" class="absolute pointer-events-auto flex flex-col gap-1 top-2 left-2"></div>
-            <div id="top-center" class="absolute pointer-events-auto flex flex-col gap-1 top-2 inset-x-2 child:mx-auto"></div>
-            <div id="top-right" class="absolute pointer-events-auto flex flex-col gap-1 top-2 right-2"></div>
-            <div id="bottom-left" class="absolute pointer-events-auto flex flex-col gap-1 bottom-2 left-2"></div>
-            <div id="bottom-center" class="absolute pointer-events-auto flex flex-col gap-1 bottom-2 inset-x-2 child:mx-auto"></div>
-            <div id="bottom-right" class="absolute pointer-events-auto flex flex-col gap-1 bottom-2 right-2"></div>
-        `;
+        const toastContainer = createVNode(BluToastContainer, {
+            ...options,
+            id: CONTAINER_ID,
+        });
 
-        document.body.appendChild(toastContainer);
+        render(toastContainer, document.body);
     },
 };
 

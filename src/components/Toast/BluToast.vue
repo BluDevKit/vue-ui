@@ -135,7 +135,7 @@ if (props.timeout > 0) {
                 :class="[
                     mergeClasses(
                         [
-                            'flex justify-between items-center p-4 rounded-md border gap-1',
+                            'flex justify-between items-center p-4 rounded-md border gap-1 pointer-events-auto',
                             type === 'success'
                                 ? 'border-green-400 bg-green-100 bg-gradient-to-r from-green-100 to-green-200 text-green-800'
                                 : '',

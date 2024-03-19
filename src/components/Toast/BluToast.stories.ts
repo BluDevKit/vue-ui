@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import BluToast from './BluToast.vue';
+import BluToastContainer from './BluToastContainer.vue';
 import { BluButton } from '@/components/Button';
 import { useBluToast } from '@/utils';
 
@@ -9,10 +10,10 @@ const meta: Meta<typeof BluToast> = {
     component: BluToast,
     tags: ['autodocs'],
     args: {
-        teleport: '.docs-story div:first-child',
         message: 'This is a toast message',
         timeout: 0,
         visible: true,
+        location: 'top-right',
     },
     render: (args) => ({
         setup() {
@@ -27,13 +28,13 @@ const meta: Meta<typeof BluToast> = {
                 createToast,
             };
         },
-        components: { BluToast, BluButton },
+        components: { BluToast, BluButton, BluToastContainer },
         template: `
         <section class="flex flex-col gap-1">
             <BluButton @click="createToast" class="mb-2" autofocus>
                 Create Toast
             </BluButton>
-            <section id="toasts" class="flex flex-col gap-1"></section>
+            <BluToastContainer />
         </section>
         `,
     }),
