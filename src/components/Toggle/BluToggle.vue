@@ -78,9 +78,7 @@ const toggleValue = () => {
     <div
         class="flex w-20"
         :class="[
-            labelLocation === 'top'
-                ? 'flex-col'
-                : 'flex-row items-center gap-1 *:',
+            labelLocation === 'top' ? 'flex-col' : 'flex-row items-center gap-1 *:',
             size === 'sm' ? 'w-20' : '',
             size === 'md' ? 'w-24' : '',
             size === 'lg' ? 'w-28' : '',
@@ -93,10 +91,7 @@ const toggleValue = () => {
     >
         <label
             :for="id"
-            :class="[
-                labelLocation === 'left' ? 'order-first' : '',
-                labelLocation === 'right' ? 'order-last' : '',
-            ]"
+            :class="[labelLocation === 'left' ? 'order-first' : '', labelLocation === 'right' ? 'order-last' : '']"
         >
             {{ label }}
         </label>
@@ -116,9 +111,7 @@ const toggleValue = () => {
                     [
                         'relative rounded-full w-full shrink-0',
                         model ? 'bg-blu-500' : 'bg-gray-400 justify-end',
-                        disabled
-                            ? 'cursor-not-allowed opacity-65 select-none'
-                            : 'cursor-pointer',
+                        disabled ? 'cursor-not-allowed opacity-65 select-none' : 'cursor-pointer',
                     ],
                     twClasses || ''
                 ),
@@ -171,7 +164,6 @@ input:focus + #toggle {
     transition: transform 0.2s ease;
 }
 input:checked + #toggle::before {
-    transform: translateY(-50%)
-        translateX(calc(var(--slide) - 2rem + var(--offset)));
+    transform: translateY(-50%) translateX(calc(var(--slide) - 2rem + var(--offset)));
 }
 </style>

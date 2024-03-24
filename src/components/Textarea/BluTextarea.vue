@@ -88,12 +88,7 @@ const props = withDefaults(defineProps<BluTextareaProps>(), {
             :maxlength="props.maxLength"
             :required="props.required"
             :readonly="props.readonly"
-            :class="[
-                mergeClasses(
-                    [usePaddingSizes(size).value],
-                    props.twClasses || ''
-                ),
-            ]"
+            :class="[mergeClasses([usePaddingSizes(size).value], props.twClasses || '')]"
             :value="modelValue"
         />
     </div>

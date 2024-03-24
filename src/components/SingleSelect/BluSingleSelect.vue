@@ -119,10 +119,7 @@ const filteredOptions = computed(() => {
 });
 
 onClickOutside(selectOptions, (e) => {
-    if (
-        props.id === (e.target as HTMLElement)?.id ||
-        (e.target as HTMLElement)?.id === 'select-search'
-    ) {
+    if (props.id === (e.target as HTMLElement)?.id || (e.target as HTMLElement)?.id === 'select-search') {
         return;
     }
     showOptions.value = false;
@@ -165,36 +162,19 @@ onKeyStroke('Escape', () => {
                     class="w-full shadow-sm"
                     :class="mergeClasses([usePaddingSizes('md').value], 'p-0')"
                 >
-                    <ul
-                        class="z-10 flex flex-col w-full gap-1 p-2 bg-white rounded-md shadow-lg"
-                    >
+                    <ul class="z-10 flex flex-col w-full gap-1 p-2 bg-white rounded-md shadow-lg">
                         <li>
-                            <BluButton
-                                size="sm"
-                                :full-width="true"
-                                @click="selectItem({ value: '', label: '' })"
-                            >
+                            <BluButton size="sm" :full-width="true" @click="selectItem({ value: '', label: '' })">
                                 Clear selection
                             </BluButton>
                         </li>
-                        <li
-                            v-for="(item, index) in filteredOptions"
-                            :key="item.value"
-                            :value="item.value"
-                        >
+                        <li v-for="(item, index) in filteredOptions" :key="item.value" :value="item.value">
                             <BluButton
                                 size="sm"
-                                :class="[
-                                    model === item.value
-                                        ? 'bg-blu-500 font-bold'
-                                        : 'bg-slate-100',
-                                ]"
+                                :class="[model === item.value ? 'bg-blu-500 font-bold' : 'bg-slate-100']"
                                 :full-width="true"
                                 @click="selectItem(item)"
-                                @blur="
-                                    index == options.length - 1 &&
-                                        toggleOptions()
-                                "
+                                @blur="index === options.length - 1 && toggleOptions()"
                             >
                                 {{ item.label }}
                             </BluButton>

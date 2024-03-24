@@ -13,14 +13,8 @@ describe('Button', () => {
 
         expect(wrapper.find('button').text()).toBe('Test Button');
         expect(wrapper.find('button').classes()).toContain('storybook-button');
-        expect(wrapper.find('button').classes()).toContain(
-            'storybook-button--primary'
-        );
-        expect(wrapper.find('button').classes()).toContain(
-            'storybook-button--large'
-        );
-        expect(wrapper.find('button').attributes('style')).toBe(
-            'background-color: blue;'
-        );
+        expect(wrapper.find('button').classes()).toContain('storybook-button--primary');
+        expect(wrapper.find('button').classes()).toContain('storybook-button--large');
+        expect(wrapper.find('button').attributes('style')).toBe('background-color: blue;');
     });
 });

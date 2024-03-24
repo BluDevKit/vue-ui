@@ -54,12 +54,7 @@ const model = defineModel();
 </script>
 
 <template>
-    <div
-        class="flex gap-1"
-        :class="[
-            labelLocation === 'top' ? 'flex-col' : 'flex-row items-center',
-        ]"
-    >
+    <div class="flex gap-1" :class="[labelLocation === 'top' ? 'flex-col' : 'flex-row items-center']">
         <input
             :id="id"
             v-model="model"

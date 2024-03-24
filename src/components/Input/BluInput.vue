@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-    usePaddingSizes,
-    usePaddingSizePosition,
-} from '@/composables/paddingSizes';
+import { usePaddingSizes, usePaddingSizePosition } from '@/composables/paddingSizes';
 import { mergeClasses } from '@/utils/tailwindMerge';
 import { computed, reactive } from 'vue';
 
@@ -40,15 +37,7 @@ interface BluInputProps {
     /**
      * type of input field
      */
-    type?:
-        | 'email'
-        | 'number'
-        | 'password'
-        | 'search'
-        | 'tel'
-        | 'text'
-        | 'url'
-        | 'hidden';
+    type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'hidden';
 
     /**
      * model value of input field
@@ -171,9 +160,7 @@ const togglePassword = () => {
 };
 
 const dynamicType = computed(() => {
-    return props.type === 'password' && state.showPassword
-        ? 'text'
-        : props.type;
+    return props.type === 'password' && state.showPassword ? 'text' : props.type;
 });
 </script>
 

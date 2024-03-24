@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge';
-import { usePaddingSizes } from '@/composables/paddingSizes';
+import { mergeClasses } from "@/utils/tailwindMerge";
+import { usePaddingSizes } from "@/composables/paddingSizes";
 
 interface BluButtonProps {
     /**
      * size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     /**
      * type of the button
      */
-    type?: 'button' | 'submit' | 'reset';
+    type?: "button" | "submit" | "reset";
     /**
      * classes to overwrite classes for the button
      */
@@ -30,8 +30,8 @@ interface BluButtonProps {
 }
 
 withDefaults(defineProps<BluButtonProps>(), {
-    type: 'button',
-    size: 'md',
+    type: "button",
+    size: "md",
 });
 
 interface BluButtonSlots {
@@ -64,8 +64,8 @@ defineSlots<BluButtonSlots>();
             mergeClasses(
                 [
                     usePaddingSizes(size).value,
-                    'flex justify-between gap-1 transition-all bg-blu-400 hover:brightness-90 disabled:bg-opacity-50 disabled:cursor-not-allowed items-center',
-                    fullWidth ? 'w-full' : '',
+                    'flex justify-center gap-1 transition-all bg-blu-400 hover:brightness-90 disabled:bg-opacity-50 disabled:cursor-not-allowed items-center',
+                    fullWidth ? 'w-full text-center' : '',
                 ],
                 twClasses || ''
             ),

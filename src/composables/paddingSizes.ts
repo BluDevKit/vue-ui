@@ -9,8 +9,7 @@ export function usePaddingSizes(size: string) {
             size === 'md' && 'px-4 py-2 text-base rounded-md',
             size === 'lg' && 'px-6 py-3 text-lg rounded-lg',
             size === 'xl' && 'px-8 py-4 text-xl rounded-xl',
-        ])
-    );
+        ]));
 }
 
 export function usePaddingSizePosition(size: string) {
@@ -20,6 +19,5 @@ export function usePaddingSizePosition(size: string) {
             size === 'sm' && 'right-2',
             size === 'md' && 'right-4',
             size === 'lg' && 'right-6',
-        ])
-    );
+        ]));
 }
