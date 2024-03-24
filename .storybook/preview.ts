@@ -6,9 +6,15 @@ import '@storybook/test';
 import '../src/assets/style.css';
 import './assets/stories.scss';
 import { App } from 'vue';
+import { createPinia } from 'pinia';
+
+const pinia = createPinia();
 
 setup((app: App) => {
-    app.use(bluDevKitUtils);
+    app.use(pinia);
+    app.use(bluDevKitUtils, {
+        maxToasts: 15,
+    });
 });
 
 const preview: Preview = {
