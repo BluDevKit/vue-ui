@@ -1,24 +1,24 @@
-import { BluToast, BluToastContainer } from '@/components/Toast';
-import type { BluToastProps } from '@/components/Toast';
-import { App, createApp, createVNode, h, render } from 'vue';
+import { BluToastContainer } from "@/components/Toast";
+import type { BluToastProps } from "@/components/Toast";
+// import { useToastStore } from '@/stores/toasts';
+import { useToastStore } from "../stores/toasts";
+import { App, Plugin, h, render } from "vue";
 
 let mainApp: App | null = null;
-let container: HTMLElement | null = null;
-const CONTAINER_ID = 'toast-overlay' as const;
+const CONTAINER_ID = "toast-overlay" as const;
 
 interface BluToastOptions {
-    maxToasts: string;
+    maxToasts: number;
 }
 
-export const bluDevKitUtils: any = {
+export const bluDevKitUtils: Plugin = {
     install(app: App, options: BluToastOptions) {
         mainApp = app;
 
-        const toastContainer = createVNode(BluToastContainer, {
-            ...options,
+        const toastContainer = h(BluToastContainer, {
+            maxToasts: options.maxToasts,
             id: CONTAINER_ID,
         });
-
         render(toastContainer, document.body);
     },
 };
@@ -26,24 +26,11 @@ export const bluDevKitUtils: any = {
 export const useBluToast = {
     create: (options: BluToastProps) => {
         if (!mainApp) return null;
+        const toastStore = useToastStore();
 
-        const toast = h(
-            BluToast,
-            {
-                teleport: `#${CONTAINER_ID} #${options.location}`,
-                ...options,
-            },
-            {
-                default: () => options.message,
-            }
-        );
-
-        const toastApp = createApp({
-            render: () => toast,
+        toastStore.addToast({
+            ...options,
+            id: Math.random().toString(36).substring(7),
         });
-
-        container = document.createElement('div');
-        document.body.appendChild(container);
-        toastApp.mount(container);
     },
 };

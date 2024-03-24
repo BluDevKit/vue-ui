@@ -14,6 +14,7 @@ const meta: Meta<typeof BluToast> = {
         timeout: 0,
         visible: true,
         location: 'top-right',
+        type: 'info',
     },
     render: (args) => ({
         setup() {

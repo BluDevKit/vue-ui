@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { useTimeout } from '@/utils/useTimeout';
-import { mergeClasses } from '@/utils/tailwindMerge';
-import { computed, ref } from 'vue';
+import { useToastStore } from "../../stores/toasts";
+import { useTimeout } from "@/utils/useTimeout";
+import { mergeClasses } from "@/utils/tailwindMerge";
+import { ref } from "vue";
 
 export interface BluToastProps {
     /**
@@ -32,18 +33,18 @@ export interface BluToastProps {
     /**
      * type of the toast
      */
-    type?: 'success' | 'warning' | 'danger' | 'info';
+    type?: "success" | "warning" | "danger" | "info";
 
     /**
      * type of the toast
      */
     location?:
-        | 'top-left'
-        | 'top-center'
-        | 'top-right'
-        | 'bottom-left'
-        | 'bottom-center'
-        | 'bottom-right';
+    | "top-left"
+    | "top-center"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-center"
+    | "bottom-right";
 
     /**
      * whether to teleport the toast
@@ -59,11 +60,21 @@ export interface BluToastProps {
      * whether the toast is visible
      */
     visible?: boolean;
+
+    /**
+     * id to target toast
+     */
+    id?: string;
+
+    /**
+     * id to target toast
+     */
+    toast?: BluToastProps;
 }
 
 const props = withDefaults(defineProps<BluToastProps>(), {
-    type: 'success',
-    teleport: 'body',
+    type: "success",
+    teleport: "body",
     dismissable: true,
     visible: true,
     timeout: 0,
@@ -73,7 +84,7 @@ interface BluToastEmits {
     /**
      * Event emitted when input is focused
      */
-    (event: 'close', $event: Event): void;
+    (event: "close", $event: Event): void;
 }
 
 const emit = defineEmits<BluToastEmits>();
@@ -91,24 +102,22 @@ interface bluButtonSlots {
     /**
      * Slot for close
      */
+    
     close?: string;
 }
 
 defineSlots<bluButtonSlots>();
 
-const showToast = ref(props.visible);
+const toastStore = useToastStore();
 const playTimer = ref(true);
 
 const { resume, pause } = useTimeout(() => {
-    closeToast(new Event('close'));
+    closeToast(new Event("close"));
 }, props.timeout);
-
-const teleportExists = computed(() => {
-    return document.querySelector(props.teleport) ? props.teleport : 'body';
-});
 
 const toggleTimeout = () => {
     if (props.timeout === 0) return;
+
     playTimer.value = !playTimer.value;
     if (playTimer.value) {
         resume();
@@ -118,8 +127,11 @@ const toggleTimeout = () => {
 };
 
 const closeToast = (e: Event) => {
-    showToast.value = false;
-    emit('close', e);
+    toastStore.removeToast({
+        id: props.toast?.id,
+        location: props.toast?.location,
+    });
+    emit("close", e);
 };
 
 if (props.timeout > 0) {
@@ -128,92 +140,72 @@ if (props.timeout > 0) {
 </script>
 
 <template>
-    <Teleport :to="teleportExists">
-        <Transition name="toast" appear>
-            <section
-                v-if="visible && showToast"
+    <section
+        :class="[
+            mergeClasses(
+                [
+                    'flex justify-between items-center p-4 rounded-md border gap-1 pointer-events-auto',
+                    type === 'success'
+                        ? 'border-green-400 bg-green-100 bg-gradient-to-r from-green-100 to-green-200 text-green-800'
+                        : '',
+                    type === 'warning'
+                        ? 'border-yellow-400 bg-yellow-100 bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800'
+                        : '',
+                    type === 'danger'
+                        ? 'border-red-400 bg-red-100 bg-gradient-to-r from-red-100 to-red-200 text-red-800'
+                        : '',
+                    type === 'info'
+                        ? 'border-blue-400 bg-blue-100 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800'
+                        : '',
+                    !dismissable ? 'justify-start' : '',
+                    // teleport === 'body' ? 'absolute bottom-4' : 'relative',
+                    fullWidth ? 'w-full' : 'w-max',
+                ],
+                twClasses || ''
+            ),
+        ]"
+        @mouseenter="toggleTimeout"
+        @mouseleave="toggleTimeout"
+    >
+        <slot name="icon">
+            <span v-if="type === 'success'">👍</span>
+            <span v-else-if="type === 'warning'">⚠️</span>
+            <span v-else-if="type === 'danger'">🔥</span>
+            <span v-else-if="type === 'info'">ℹ️</span>
+        </slot>
+        <p>
+            <slot>
+                {{ message }}
+            </slot>
+        </p>
+        <slot v-if="dismissable" name="close">
+            <button class="p-1 rounded-md" @click="closeToast">
+                <span>❌</span>
+            </button>
+        </slot>
+        <div id="timer" class="absolute inset-x-0 bottom-0">
+            <span
+                v-if="timerVisible && timeout > 0"
+                class="block h-1"
                 :class="[
-                    mergeClasses(
-                        [
-                            'flex justify-between items-center p-4 rounded-md border gap-1 pointer-events-auto',
-                            type === 'success'
-                                ? 'border-green-400 bg-green-100 bg-gradient-to-r from-green-100 to-green-200 text-green-800'
-                                : '',
-                            type === 'warning'
-                                ? 'border-yellow-400 bg-yellow-100 bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800'
-                                : '',
-                            type === 'danger'
-                                ? 'border-red-400 bg-red-100 bg-gradient-to-r from-red-100 to-red-200 text-red-800'
-                                : '',
-                            type === 'info'
-                                ? 'border-blue-400 bg-blue-100 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800'
-                                : '',
-                            !dismissable ? 'justify-start' : '',
-                            teleport === 'body'
-                                ? 'absolute bottom-4'
-                                : 'relative',
-                            fullWidth ? 'w-full' : 'w-max',
-                        ],
-                        twClasses || ''
-                    ),
+                    type === 'success' ? 'bg-green-400' : '',
+                    type === 'warning' ? 'bg-yellow-400' : '',
+                    type === 'danger' ? 'bg-red-400' : '',
+                    type === 'info' ? 'bg-blue-400' : '',
                 ]"
-                @mouseenter="toggleTimeout"
-                @mouseleave="toggleTimeout"
-            >
-                <slot name="icon">
-                    <span v-if="type === 'success'">👍</span>
-                    <span v-else-if="type === 'warning'">⚠️</span>
-                    <span v-else-if="type === 'danger'">🔥</span>
-                    <span v-else-if="type === 'info'">ℹ️</span>
-                </slot>
-                <p>
-                    <slot>
-                        {{ message }}
-                    </slot>
-                </p>
-                <slot v-if="dismissable" name="close">
-                    <button class="p-1 rounded-md" @click="closeToast">
-                        <span>❌</span>
-                    </button>
-                </slot>
-                <div id="timer" class="absolute inset-x-0 bottom-0">
-                    <span
-                        v-if="timerVisible && timeout > 0"
-                        class="block h-1"
-                        :class="[
-                            type === 'success' ? 'bg-green-400' : '',
-                            type === 'warning' ? 'bg-yellow-400' : '',
-                            type === 'danger' ? 'bg-red-400' : '',
-                            type === 'info' ? 'bg-blue-400' : '',
-                        ]"
-                        :style="{
-                            'animation-duration': timeout + 'ms',
-                            'animation-play-state': playTimer
-                                ? 'running'
-                                : 'paused',
-                        }"
-                    />
-                </div>
-            </section>
-        </Transition>
-    </Teleport>
+                :style="{
+                    'animation-duration': timeout + 'ms',
+                    'animation-play-state': playTimer ? 'running' : 'paused',
+                }"
+            />
+        </div>
+    </section>
 </template>
 
 <style lang="scss" scoped>
-.toast-enter-active,
-.toast-leave-active {
-    transition:
-        opacity 0.3s,
-        transform 0.3s;
-}
-.toast-enter-from,
-.toast-leave-to {
-    transform: translateY(100%);
-    opacity: 0;
-}
-
 #timer {
     border-radius: inherit;
+
     span {
         border-radius: inherit;
         animation: timer ease-in-out forwards;
@@ -224,6 +216,7 @@ if (props.timeout > 0) {
     from {
         width: 100%;
     }
+
     to {
         width: 0%;
     }

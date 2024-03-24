@@ -19,7 +19,7 @@ export const useTimeout = (
     };
 
     if (startImmediately) {
-        console.log('startImmediately');
+        console.log("startImmediately");
         resume();
     }
 
