@@ -34,8 +34,8 @@ export default meta;
 type Story = StoryObj<typeof BluSingleSelect>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {
     args: {
         default: 'Button',

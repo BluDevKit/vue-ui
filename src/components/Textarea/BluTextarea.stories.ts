@@ -17,6 +17,6 @@ export default meta;
 type Story = StoryObj<typeof BluTextarea>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};

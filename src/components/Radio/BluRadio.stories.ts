@@ -17,6 +17,6 @@ export default meta;
 type Story = StoryObj<typeof BluRadio>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};

@@ -45,7 +45,7 @@
         "build": "npm run lint && vue-tsc --noEmit && vite build",
         "build:all": "npm run build && npm run storybook:build",
         "preview": "vite preview",
-        "storybook": "storybook dev --no-open -p 6006",
+        "storybook": "npm run lint && storybook dev --no-open -p 6006",
         "storybook:serve-build": "npx http-server .storybook/build",
         "storybook:build": "storybook build -o .storybook/build",
         "storybook:build:dist": "npm run storybook:build && xcopy /Y .storybook\\build dist\\storybook",

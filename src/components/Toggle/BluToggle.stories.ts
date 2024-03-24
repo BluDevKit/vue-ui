@@ -16,6 +16,6 @@ export default meta;
 type Story = StoryObj<typeof BluToggle>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};

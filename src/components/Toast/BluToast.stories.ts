@@ -45,8 +45,8 @@ export default meta;
 type Story = StoryObj<typeof BluToast>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};
 
 export const timeout: Story = {

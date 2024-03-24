@@ -17,6 +17,6 @@ export default meta;
 type Story = StoryObj<typeof BluTabView>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};

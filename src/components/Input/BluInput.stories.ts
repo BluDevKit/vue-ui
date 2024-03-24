@@ -17,8 +17,8 @@ export default meta;
 type Story = StoryObj<typeof BluInput>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {
     args: {
         id: 'input',
