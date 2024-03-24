@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BluProgressProps } from "./BluProgress.vue";
 
-const props = withDefaults(defineProps<
+withDefaults(defineProps<
         Pick<
             BluProgressProps,
             | "progressValue"
@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<
     progressWidth: "var(--default-width)",
 });
 
-console.log(props);
 </script>
 <template>
     <div
@@ -101,6 +100,10 @@ div[role="progressbar"] {
             stroke-width: var(--progress-width);
             stroke: var(--progress-background);
 
+            &:nth-of-type(1) {
+                filter: drop-shadow(0 0 0.2rem rgba(0, 0, 0, 0.5));
+            }
+            
             &:nth-of-type(2) {
                 stroke: var(--progress-color);
                 stroke-dasharray: var(--dasharray);
