@@ -24,3 +24,5 @@ bludevkit-vue-ui-*.tgz
 *.njsproj
 *.sln
 *.sw?
+
+.npmrc
