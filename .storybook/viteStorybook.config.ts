@@ -8,8 +8,10 @@ export default defineConfig({
     resolve: {
         alias: {
             '@/components': resolve(__dirname, '../src/components'),
+            '@/stores': resolve(__dirname, '../src/stores'),
             '@/composables': resolve(__dirname, '../src/composables'),
             '@/utils': resolve(__dirname, '../src/utils'),
+            '@public': resolve(__dirname, '../public'),
         },
         extensions: [
             '.mjs',
