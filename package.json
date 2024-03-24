@@ -38,7 +38,7 @@
     "sideEffects": false,
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BluDevKit/vue-ui.git"
+        "url": "https://github.com/BluDevKit/vue-ui.git"
     },
     "scripts": {
         "dev": "vite",

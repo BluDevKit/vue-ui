@@ -1,6 +1,8 @@
-# @bludevkit/vue-ui
+# BluDevKit: Vue UI
 
-`@bludevkit/vue-ui` is a Vue 3 component library that provides reusable UI components for building modern web applications.
+<!-- [![npm version](https://badge.fury.io/js/%40bludevkit%2Fvue-ui.svg)](https://badge.fury.io/js/%40bludevkit%2Fvue-ui) -->
+
+Blu Dev Kit is a collection of tools and libraries for developing Vue3 applications. It includes a set of components, modules, and utilities that are commonly used in web applications. The goal of Blu Dev Kit is to provide a set of tools that can be used to quickly build web applications without having to write a lot of boilerplate code.
 
 ## Installation
 
