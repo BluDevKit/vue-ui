@@ -8,8 +8,7 @@
         // "eslint:recommended",
         // "plugin:@typescript-eslint/recommended",
         "plugin:vue/recommended",
-        "plugin:vue/vue3-recommended",
-        "plugin:prettier-vue/recommended"
+        "plugin:vue/vue3-recommended"
     ],
     "parser": "vue-eslint-parser",
     "parserOptions": {
@@ -17,14 +16,23 @@
         "sourceType": "module",
         "parser": "@typescript-eslint/parser"
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint", "vue"],
     "rules": {
-        "vue/html-indent": [
+        "indent": ["error", 4],
+        "array-element-newline": [
             "error",
-            4
+            {
+                "ArrayExpression": "consistent",
+                "ArrayPattern": {
+                    "minItems": 3
+                }
+            }
         ],
+        "vue/eqeqeq": ["error", "always"],
+        "vue/dot-notation": "error",
+        "function-paren-newline": ["error", { "minItems": 3 }],
+        "function-call-argument-newline": ["error", "never"],
+        "vue/html-indent": ["error", 4],
         "vue/multi-word-component-names": "off",
         "vue/html-self-closing": [
             "error",
@@ -38,12 +46,8 @@
         "vue/max-attributes-per-line": [
             "error",
             {
-                "singleline": {
-                    "max": 3
-                },
-                "multiline": {
-                    "max": 1
-                }
+                "singleline": 3,
+                "multiline": 1
             }
         ],
         "vue/component-name-in-template-casing": [
@@ -59,11 +63,7 @@
             {
                 "ignoreWhenNoAttributes": true,
                 "ignoreWhenEmpty": true,
-                "ignores": [
-                    "pre",
-                    "textarea",
-                    "slot"
-                ],
+                "ignores": ["pre", "textarea", "slot"],
                 "externalIgnores": []
             }
         ],
