@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useToastStore } from "../../stores/toasts";
 import { useTimeout } from "@/utils/useTimeout";
 import { mergeClasses } from "@/utils/tailwindMerge";
 import { ref } from "vue";
+import { useToastStore } from "@/stores/toasts";
 
 export interface BluToastProps {
     /**

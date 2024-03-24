@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// import { useToastStore } from '@/stores/toasts';
-import { useToastStore } from "../../stores/toasts";
+import { useToastStore } from '@/stores/toasts';
 import { watch } from "vue";
 import BluToast from "./BluToast.vue";
 

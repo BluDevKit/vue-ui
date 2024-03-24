@@ -1,7 +1,6 @@
 import { BluToastContainer } from "@/components/Toast";
 import type { BluToastProps } from "@/components/Toast";
-// import { useToastStore } from '@/stores/toasts';
-import { useToastStore } from "../stores/toasts";
+import { useToastStore } from '@/stores/toasts';
 import { App, Plugin, h, render } from "vue";
 
 let mainApp: App | null = null;

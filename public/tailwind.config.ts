@@ -1,5 +1,5 @@
-/** @type {import('tailwindcss').Config} */
 import forms from '@tailwindcss/forms';
+import type { Config } from 'tailwindcss' 
 
 export default {
     content: [
@@ -9,7 +9,7 @@ export default {
     ],
     plugins: [
         forms,
-        function ({ addVariant }) {
+        function ({ addVariant }: { addVariant: Function}) {
             addVariant('child', '& > *');
             addVariant('child-hover', '& > *:hover');
             addVariant('child-focus', '& > *:focus');
@@ -39,4 +39,4 @@ export default {
             },
         },
     },
-};
+} satisfies Config;
