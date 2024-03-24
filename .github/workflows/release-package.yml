@@ -19,6 +19,6 @@ jobs:
                   # Defaults to the user or organization that owns the workflow file
                   scope: "@bludevkit"
             - run: npm ci
-            - run: npm publish
+            - run: npm run release
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
