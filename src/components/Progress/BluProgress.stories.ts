@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import BluProgress from './BluProgress.vue';
+import { useTailwindTheme } from '@/utils/tailwindTheme';
 
 const hours = new Date().getHours();
 const hoursInPercent = (hours / 24) * 100;
@@ -10,10 +11,9 @@ const meta: Meta<typeof BluProgress> = {
     component: BluProgress,
     tags: ['autodocs'],
     args: {
-        // icon: 'check',
-        label: 'Count',
+        label: 'Day completed',
         size: 'md',
-        value: hoursInPercent,
+        progressValue: hoursInPercent,
     },
 };
 
@@ -24,3 +24,19 @@ type Story = StoryObj<typeof BluProgress>;
  *Variants
  */
 export const Basic: Story = {};
+export const Gradient: Story = {
+    args: {
+        gradientColors: [
+            {
+                offset: '0%',
+                stopColor: useTailwindTheme().colors.blu[600],
+            },
+            {
+                offset: '100%',
+                stopColor: useTailwindTheme().colors.red[400],
+            },
+        ]
+    },
+};
+
+

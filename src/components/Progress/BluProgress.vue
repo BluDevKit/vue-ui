@@ -2,8 +2,34 @@
 import { mergeClasses } from "@/utils/tailwindMerge";
 import { usePaddingSizes } from "@/composables/paddingSizes";
 import { computed } from "vue";
+import CircleSvg from "./CircleSvg.vue";
 
-interface BluButtonProps {
+
+
+export interface BluProgressProps {
+    /**
+     * value of the progress element
+     */
+    progressValue: number;
+    /*
+     * color of the progress element
+     */
+    progressColor?: string;
+    /**
+     * gradient colors of the progress element
+     */
+    gradientColors?: {
+        offset: string;
+        stopColor: string;
+    }[];
+    /**
+     * background color of the progress element
+     */
+    progressBackground?: string;
+    /**
+     * width of the progress element
+     */
+    progressWidth?: string;
     /**
      * size of the progress element
      */
@@ -21,10 +47,6 @@ interface BluButtonProps {
      */
     labelLocation?: "left" | "right" | "top" | "bottom";
     /**
-     * value of the progress element
-     */
-    value: number;
-    /**
      * classes to overwrite classes for the progress element
      */
     twClasses?: string;
@@ -36,44 +58,47 @@ interface BluButtonProps {
      * whether the progress element is loading
      */
     loading?: boolean;
-    
 }
 
-const props = withDefaults(defineProps<BluButtonProps>(), {
-    value: 0,
+const props = withDefaults(defineProps<BluProgressProps>(), {
+    progressValue: 0,    
     size: "md",
     labelType: "h2",
     labelLocation: "bottom",
 });
 
-// interface BluButtonSlots {
+// interface BluProgressSlots {
 //     /**
 //      * Slot for icon
 //      */
 //     icon?: string;
 // }
 
-// defineSlots<BluButtonSlots>();
+// defineSlots<BluProgressSlots>();
 
-const progress = computed(() => Math.round(props.value));
+const progress = computed(() => {
+    return props.progressValue > 100 ? 100 : Math.round(props.progressValue) < 0 ? 0 : Math.round(props.progressValue);
+});
 </script>
 
 <template>
-    <section 
+    <section
         :disabled="disabled || loading"
         :class="[
             mergeClasses(
                 [
                     usePaddingSizes(size).value,
-                    'flex gap-4 items-center justify-between bg-gray-200 w-max',
-                    labelLocation === 'top' || labelLocation === 'bottom' ? 'flex-col' : 'flex-row',
+                    'relative flex gap-4 items-center justify-between bg-gray-200 w-max',
+                    labelLocation === 'top' || labelLocation === 'bottom'
+                        ? 'flex-col'
+                        : 'flex-row',
                 ],
                 twClasses || ''
             ),
         ]"
     >
-        <component 
-            :is="labelType ?? 'h2'" 
+        <component
+            :is="labelType ?? 'h2'"
             :class="[
                 labelLocation === 'top' ? 'order-first' : '',
                 labelLocation === 'bottom' ? 'order-last' : '',
@@ -83,45 +108,15 @@ const progress = computed(() => Math.round(props.value));
         >
             {{ label }}
         </component>
-        <Transition appear>
-            <div
-                v-if="true"
-                role="progressbar"
-                :aria-valuenow="progress"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-live="polite"
-                :style="{ '--progress': `${progress}%` }"
-            />
-        </Transition>
+
+        <CircleSvg
+            v-bind="{
+                progressValue: progress,
+                progressColor,
+                progressBackground,
+                progressWidth,
+                gradientColors,
+            }"
+        />
     </section>
 </template>
-<style lang="scss" scoped>
-div[role="progressbar"] {
-    --size: 8rem;
-    --border-width: 1.25rem;
-    
-    display: grid;
-    place-items: center;
-    width: var(--size);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-image: conic-gradient(
-        black var(--progress),
-        grey 0%
-    );
-
-    font-weight: bold;
-    font-size: x-large;
-
-    &::after{
-        content: attr(aria-valuenow);
-        display: grid;
-        place-items: center;
-        width: calc(100% - var(--border-width));
-        aspect-ratio: 1;
-        border-radius: inherit;
-        background-color: white;
-    }   
-}
-</style>
