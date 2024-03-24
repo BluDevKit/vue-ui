@@ -32,7 +32,6 @@ const config: StorybookConfig = {
         '@storybook/addon-essentials',
         // 'storybook-addon-pseudo-states',
         '@storybook/addon-interactions',
-        '@storybook/addon-mdx-gfm',
         '@storybook/addon-themes',
     ],
 };
