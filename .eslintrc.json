@@ -29,6 +29,7 @@
             }
         ],
         "vue/eqeqeq": ["error", "always"],
+        "multiline-comment-style": ["error", "starred-block"],
         "vue/dot-notation": "error",
         "function-paren-newline": ["error", { "minItems": 3 }],
         "function-call-argument-newline": ["error", "never"],
