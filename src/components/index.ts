@@ -1,6 +1,7 @@
 export { BluButton } from './Button';
 export { BluCheckbox } from './Checkbox';
 export { BluInput } from './Input';
+export { BluProgress } from './Progress';
 export { BluRadio } from './Radio';
 export { BluRadioCard } from './RadioCard';
 export { BluSingleSelect } from './SingleSelect';
