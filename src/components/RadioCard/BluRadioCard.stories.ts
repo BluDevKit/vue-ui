@@ -18,8 +18,8 @@ export default meta;
 type Story = StoryObj<typeof BluRadioCard>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};
 
 export const Disabled: Story = {

@@ -16,6 +16,6 @@ export default meta;
 type Story = StoryObj<typeof BluButton>;
 
 /* 
-  Variants
-*/
+ *Variants
+ */
 export const Basic: Story = {};
