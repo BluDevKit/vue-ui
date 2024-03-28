@@ -27,6 +27,6 @@ jobs:
             - run: |
                   git config --global user.email "coding.ymaro@gmail.com"
                   git config --global user.name "Ymaro Blue"
-            - run: npm run release
+            - run: npm run release && npm run publish-release
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
