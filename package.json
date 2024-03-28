@@ -1,6 +1,6 @@
 {
     "name": "@bludevkit/vue-ui",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": {
         "name": "Ymaro Blue",
         "email": "coding.ymaro@gmail.com"
@@ -55,6 +55,7 @@
         "release:patch": "npm run release -- --release-as patch && npm run publish-release",
         "release:minor": "npm run release -- --release-as minor && npm run publish-release",
         "release:major": "npm run release -- --release-as major && npm run publish-release",
+        "new-release": "release-please github-release --token=$GITHUB_TOKEN --repo-url=@bludevkit/vue-ui",
         "test": "echo \"Error: no test specified\"",
         "lint": "eslint --ext .ts,.vue src",
         "lint:fix": "npm run lint -- --fix"
