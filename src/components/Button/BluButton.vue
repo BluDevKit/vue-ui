@@ -6,7 +6,7 @@ interface BluButtonProps {
     /**
      * size of the button
      */
-    size: "xs" | "sm" | "md" | "lg" | "xl";
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     /**
      * type of the button
      */
