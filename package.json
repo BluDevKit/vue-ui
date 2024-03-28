@@ -1,6 +1,6 @@
 {
     "name": "@bludevkit/vue-ui",
-    "version": "0.0.8",
+    "version": "0.0.3",
     "author": {
         "name": "Ymaro Blue",
         "email": "coding.ymaro@gmail.com"
@@ -50,7 +50,10 @@
         "storybook:build": "storybook build -o .storybook/build",
         "storybook:build:dist": "npm run storybook:build && xcopy /Y .storybook\\build dist\\storybook",
         "storybook:build:serve": "npm run storybook:build && npm run storybook:serve-build",
-        "release": "standard-version && git push --follow-tags && npm publish",
+        "release": "commit-and-tag-version",
+        "release:patch": "npm run release -- --release-as patch",
+        "release:minor": "npm run release -- --release-as minor",
+        "release:major": "npm run release -- --release-as major",
         "test": "echo \"Error: no test specified\"",
         "lint": "eslint --ext .ts,.vue src",
         "lint:fix": "npm run lint -- --fix"
@@ -78,6 +81,7 @@
         "@vitejs/plugin-vue": "^5.0.3",
         "@vue/test-utils": "^2.4.4",
         "autoprefixer": "^10.4.17",
+        "commit-and-tag-version": "^12.2.0",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier-vue": "^5.0.0",
