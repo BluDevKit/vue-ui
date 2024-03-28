@@ -7,24 +7,26 @@ jobs:
     release-please:
         runs-on: ubuntu-latest
         steps:
-            - uses: google-github-actions/release-please-action@v4
+            - name: Google Release Please
+              uses: google-github-actions/release-please-action@v4
               id: release
               with:
                   release-type: node
-            # The logic below handles the npm publication:
-            - uses: actions/checkout@v4
-              # these if statements ensure that a publication only occurs when
-              # a new release is created:
-              if: ${{ steps.release.outputs.release_created }}
-            - uses: actions/setup-node@v4
+            - name: Checkout
+              uses: actions/checkout@v4.1.1
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v4.0.2
+
               with:
-                  node-version: 12
+                  node-version: 21
                   registry-url: https://npm.pkg.github.com/
                   scope: "@bludevkit"
-              if: ${{ steps.release.outputs.release_created }}
             - run: npm ci
-              if: ${{ steps.release.outputs.release_created }}
-            - run: npm publish
+            - run: npm run build
+            - run: |
+                  git config --global user.email "coding.ymaro@gmail.com"
+                  git config --global user.name "Ymaro Blue"
+            - run: npm run release
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-              if: ${{ steps.release.outputs.release_created }}
