@@ -4,13 +4,19 @@ import { usePaddingSizes } from "@/composables/paddingSizes";
 import { computed } from "vue";
 import CircleSvg from "./CircleSvg.vue";
 
-
-
 export interface BluProgressProps {
     /**
      * value of the progress element
      */
     progressValue: number;
+    /**
+     * unit of the progress element
+     */
+    progressUnit?: string;
+    /**
+     * location of the unit
+     */
+    unitLocation?: "left" | "right";
     /*
      * color of the progress element
      */
@@ -30,6 +36,10 @@ export interface BluProgressProps {
      * width of the progress element
      */
     progressWidth?: string;
+    /**
+     * show complete mark
+     */
+    showCompleteMark?: boolean;
     /**
      * size of the progress element
      */
@@ -61,7 +71,7 @@ export interface BluProgressProps {
 }
 
 const props = withDefaults(defineProps<BluProgressProps>(), {
-    progressValue: 0,    
+    progressValue: 0,
     size: "md",
     labelType: "h2",
     labelLocation: "bottom",
@@ -77,7 +87,11 @@ const props = withDefaults(defineProps<BluProgressProps>(), {
 // defineSlots<BluProgressSlots>();
 
 const progress = computed(() => {
-    return props.progressValue > 100 ? 100 : Math.round(props.progressValue) < 0 ? 0 : Math.round(props.progressValue);
+    return props.progressValue > 100
+        ? 100
+        : Math.round(props.progressValue) < 0
+          ? 0
+          : Math.round(props.progressValue);
 });
 </script>
 
@@ -112,10 +126,13 @@ const progress = computed(() => {
         <CircleSvg
             v-bind="{
                 progressValue: progress,
+                progressUnit,
+                unitLocation,
                 progressColor,
                 progressBackground,
                 progressWidth,
                 gradientColors,
+                showCompleteMark,
             }"
         />
     </section>

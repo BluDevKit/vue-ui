@@ -39,4 +39,19 @@ export const Gradient: Story = {
     },
 };
 
+export const Completed: Story = {
+    args: {
+        label: 'Completed',
+        progressValue: 100,
+    },
+};
+
+export const CompletedWithMark: Story = {
+    args: {
+        label: 'Completed',
+        progressValue: 100,
+        showCompleteMark: true,
+    },
+};
+
 
