@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePaddingSizes } from "@/composables/paddingSizes";
-import { mergeClasses } from "@/utils/tailwindMerge";
+import { mergeClasses } from "@/utils/tailwind";
 
 interface BluTextareaProps {
     /**

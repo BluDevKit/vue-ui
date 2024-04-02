@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import CircleSvg from "./CircleSvg.vue";
 import { usePaddingSizes } from "@/composables/paddingSizes";
-import { mergeClasses } from "@/utils/tailwindMerge";
+import { mergeClasses } from "@/utils/tailwind";
 
 export interface BluProgressProps {
     /**

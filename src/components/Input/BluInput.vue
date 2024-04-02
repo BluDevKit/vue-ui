@@ -4,7 +4,7 @@ import {
     usePaddingSizes,
     usePaddingSizePosition,
 } from "@/composables/paddingSizes";
-import { mergeClasses } from "@/utils/tailwindMerge";
+import { mergeClasses } from "@/utils/tailwind";
 
 interface BluInputProps {
     /**

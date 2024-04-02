@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 
 import BluProgress from "./BluProgress.vue";
-import { useTailwindTheme } from "@/utils/tailwindTheme";
+import { useTailwindTheme } from "@/utils/tailwind";
 
 const hours = new Date().getHours();
 const hoursInPercent = (hours / 24) * 100;

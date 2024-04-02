@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mergeClasses } from "@/utils/tailwindMerge";
+import { mergeClasses } from "@/utils/tailwind";
 
 interface BluCheckboxProps {
     /**

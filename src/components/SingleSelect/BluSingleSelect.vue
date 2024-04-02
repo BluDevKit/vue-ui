@@ -3,7 +3,7 @@ import { onClickOutside, onKeyStroke } from "@vueuse/core";
 import { computed, ref } from "vue";
 import { BluInput, BluButton } from "@/components";
 import { usePaddingSizes } from "@/composables/paddingSizes";
-import { mergeClasses } from "@/utils/tailwindMerge";
+import { mergeClasses } from "@/utils/tailwind";
 
 interface BluSingleSelectProps {
     /**
