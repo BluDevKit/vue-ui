@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useToastStore } from '@/stores/toasts';
 import { watch } from "vue";
 import BluToast from "./BluToast.vue";
+import { useToastStore } from "@/stores/toasts";
 
 export interface BluToastContainerProps {
     /**
@@ -17,36 +17,28 @@ const props = withDefaults(defineProps<BluToastContainerProps>(), {
 const toastStore = useToastStore();
 
 watch(toastStore.toasts, () => {
-    console.log("toasts changed");
-
     if (toastStore.topLeftToasts.length > props.maxToasts) {
-        // toastStore.topLeftToasts.shift();
-        console.log("topLeftToasts length", toastStore.topLeftToasts.length);
+        toastStore.topLeftToasts.shift();
     }
 
     if (toastStore.topCenterToasts.length > props.maxToasts) {
-        // toastStore.topCenterToasts.shift();
-        console.log("topCenterToasts length", toastStore.topCenterToasts.length);
+        toastStore.topCenterToasts.shift();
     }
 
     if (toastStore.topRightToasts.length > props.maxToasts) {
-        // toastStore.topRightToasts.shift();
-        console.log("topRightToasts length", toastStore.topRightToasts.length);
+        toastStore.topRightToasts.shift();
     }
 
     if (toastStore.bottomLeftToasts.length > props.maxToasts) {
-        // toastStore.bottomLeftToasts.shift();
-        console.log("bottomLeftToasts length", toastStore.bottomLeftToasts.length);
+        toastStore.bottomLeftToasts.shift();
     }
 
     if (toastStore.bottomCenterToasts.length > props.maxToasts) {
-        // toastStore.bottomCenterToasts.shift();
-        console.log("bottomCenterToasts length",toastStore.bottomCenterToasts.length);
+        toastStore.bottomCenterToasts.shift();
     }
 
     if (toastStore.bottomRightToasts.length > props.maxToasts) {
-        // toastStore.bottomRightToasts.shift();
-        console.log("bottomRightToasts length", toastStore.bottomRightToasts.length);
+        toastStore.bottomRightToasts.shift();
     }
 });
 </script>
@@ -61,9 +53,7 @@ watch(toastStore.toasts, () => {
                 <BluToast
                     v-for="toast in toastStore.topLeftToasts"
                     :key="toast.id"
-                    :message="toast.message"
-                    :type="toast.type"
-                    :toast="toast"
+                    v-bind="toast"
                 />
             </TransitionGroup>
         </div>
@@ -89,9 +79,7 @@ watch(toastStore.toasts, () => {
                 <BluToast
                     v-for="toast in toastStore.topRightToasts"
                     :key="toast.id"
-                    :message="toast.message"
-                    :type="toast.type"
-                    :toast="toast"
+                    v-bind="toast"
                 />
             </TransitionGroup>
         </div>
@@ -103,9 +91,7 @@ watch(toastStore.toasts, () => {
                 <BluToast
                     v-for="toast in toastStore.bottomLeftToasts"
                     :key="toast.id"
-                    :message="toast.message"
-                    :type="toast.type"
-                    :toast="toast"
+                    v-bind="toast"
                 />
             </TransitionGroup>
         </div>
@@ -117,9 +103,7 @@ watch(toastStore.toasts, () => {
                 <BluToast
                     v-for="toast in toastStore.bottomCenterToasts"
                     :key="toast.id"
-                    :message="toast.message"
-                    :type="toast.type"
-                    :toast="toast"
+                    v-bind="toast"
                 />
             </TransitionGroup>
         </div>
@@ -131,9 +115,7 @@ watch(toastStore.toasts, () => {
                 <BluToast
                     v-for="toast in toastStore.bottomRightToasts"
                     :key="toast.id"
-                    :message="toast.message"
-                    :type="toast.type"
-                    :toast="toast"
+                    v-bind="toast"
                 />
             </TransitionGroup>
         </div>

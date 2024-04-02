@@ -1,20 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluToast from './BluToast.vue';
-import BluToastContainer from './BluToastContainer.vue';
-import { BluButton } from '@/components/Button';
-import { useBluToast } from '@/utils';
+import BluToast from "./BluToast.vue";
+import BluToastContainer from "./BluToastContainer.vue";
+import { BluButton } from "@/components/Button";
+import { useBluToast } from "@/utils/toast";
 
 const meta: Meta<typeof BluToast> = {
-    title: 'BluToast',
+    title: "BluToast",
     component: BluToast,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        message: 'This is a toast message',
+        message: "This is a toast message",
         timeout: 0,
-        visible: true,
-        location: 'top-right',
-        type: 'info',
+        location: "top-right",
+        type: "info",
     },
     render: (args) => ({
         setup() {
@@ -49,7 +48,7 @@ type Story = StoryObj<typeof BluToast>;
  */
 export const Basic: Story = {};
 
-export const timeout: Story = {
+export const Timeout: Story = {
     args: {
         timeout: 3000,
         timerVisible: true,

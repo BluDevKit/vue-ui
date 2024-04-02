@@ -16,34 +16,27 @@ export const useTimeout = (callback: () => void, options: { delay: number, start
     const runCallback = () => {
         timeoutId.value = setTimeout(() => {
             callback();
-            console.log("runCallback");
             isStarted.value = false;
         }, remaining.value);
     };
 
     const start = () => {
-        console.log("start");
         if (!isStarted.value) {
             startPoint.value = new Date();
             isStarted.value = true;
             runCallback();
-            console.log("timeoutId", timeoutId.value);
         }
     };
     
     const pause = () => {
-        console.log("pause");
-        console.log("timeoutId: before pause", timeoutId.value);
         if (timeoutId.value && !isPaused.value) {
             remaining.value -= +new Date() - startPoint.value!.getTime();
             clearTimeout(timeoutId.value);
             isPaused.value = true;
         }
-        console.log("timeoutId: after pause", timeoutId.value);
     };
 
     const resume = () => {
-        console.log("resume");
         if (isPaused.value) {
             isPaused.value = false;
             runCallback();
@@ -52,7 +45,6 @@ export const useTimeout = (callback: () => void, options: { delay: number, start
 
     onMounted(() => {
         if (options.startImmediately) {
-            console.log("startImmediately", options.startImmediately);
             start();
         }
     });

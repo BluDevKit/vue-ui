@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useTimeout } from "@/utils/useTimeout";
-import { mergeClasses } from "@/utils/tailwindMerge";
 import { ref } from "vue";
+import { useTimeout } from "@/composables/useTimeout";
 import { useToastStore } from "@/stores/toasts";
+import { mergeClasses } from "@/utils/tailwind";
 
 export interface BluToastProps {
     /**
@@ -57,26 +57,15 @@ export interface BluToastProps {
     timerVisible?: boolean;
 
     /**
-     * whether the toast is visible
-     */
-    visible?: boolean;
-
-    /**
      * id to target toast
      */
     id?: string;
-
-    /**
-     * id to target toast
-     */
-    toast?: BluToastProps;
 }
 
 const props = withDefaults(defineProps<BluToastProps>(), {
     type: "success",
     teleport: "body",
     dismissable: true,
-    visible: true,
     timeout: 0,
 });
 
@@ -111,9 +100,12 @@ defineSlots<bluButtonSlots>();
 const toastStore = useToastStore();
 const playTimer = ref(true);
 
-const { resume, pause } = useTimeout(() => {
+const { pause, resume } = useTimeout(() => {
     closeToast(new Event("close"));
-}, props.timeout);
+}, {
+    delay: props.timeout,
+    startImmediately: props.timeout > 0,
+});
 
 const toggleTimeout = () => {
     if (props.timeout === 0) return;
@@ -128,15 +120,11 @@ const toggleTimeout = () => {
 
 const closeToast = (e: Event) => {
     toastStore.removeToast({
-        id: props.toast?.id,
-        location: props.toast?.location,
+        id: props.id,
+        location: props.location,
     });
     emit("close", e);
 };
-
-if (props.timeout > 0) {
-    resume();
-}
 </script>
 
 <template>
@@ -144,7 +132,7 @@ if (props.timeout > 0) {
         :class="[
             mergeClasses(
                 [
-                    'flex justify-between items-center p-4 rounded-md border gap-1 pointer-events-auto',
+                    'relative flex justify-between items-center p-4 rounded-md border gap-1 pointer-events-auto',
                     type === 'success'
                         ? 'border-green-400 bg-green-100 bg-gradient-to-r from-green-100 to-green-200 text-green-800'
                         : '',
@@ -158,7 +146,6 @@ if (props.timeout > 0) {
                         ? 'border-blue-400 bg-blue-100 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800'
                         : '',
                     !dismissable ? 'justify-start' : '',
-                    // teleport === 'body' ? 'absolute bottom-4' : 'relative',
                     fullWidth ? 'w-full' : 'w-max',
                 ],
                 twClasses || ''
@@ -222,3 +209,4 @@ if (props.timeout > 0) {
     }
 }
 </style>
+@/utils/tailwind

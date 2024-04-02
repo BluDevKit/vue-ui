@@ -1,7 +1,9 @@
+import {
+    App, Plugin, h, render, 
+} from "vue";
 import { BluToastContainer } from "@/components/Toast";
 import type { BluToastProps } from "@/components/Toast";
-import { useToastStore } from '@/stores/toasts';
-import { App, Plugin, h, render } from "vue";
+import { useToastStore } from "@/stores/toasts";
 
 let mainApp: App | null = null;
 const CONTAINER_ID = "toast-overlay" as const;
@@ -23,10 +25,10 @@ export const bluDevKitUtils: Plugin = {
 };
 
 export const useBluToast = {
-    create: (options: BluToastProps) => {
-        if (!mainApp) return null;
-        const toastStore = useToastStore();
+    create: (options: BluToastProps): void => {
+        if (!mainApp) return;
 
+        const toastStore = useToastStore();
         toastStore.addToast({
             ...options,
             id: Math.random().toString(36).substring(7),
