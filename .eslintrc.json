@@ -1,7 +1,7 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
+        "es2024": true,
         "node": true,
         "vue/setup-compiler-macros": true
     },
@@ -20,12 +20,18 @@
     "parser": "vue-eslint-parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module",
-        "parser": "@typescript-eslint/parser"
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint", "vue"],
+    "plugins": [
+        "@typescript-eslint",
+        "vue"
+    ],
     "rules": {
-        "indent": ["error", 4],
+        "@typescript-eslint/camelcase": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
         "array-element-newline": [
             "error",
             {
@@ -35,75 +41,46 @@
                 }
             }
         ],
-        "vue/eqeqeq": ["error", "always"],
-        "multiline-comment-style": ["error", "starred-block"],
-        "vue/dot-notation": "error",
-        "function-paren-newline": ["error", { "minItems": 3 }],
-        "function-call-argument-newline": ["error", "never"],
-        "vue/html-indent": ["error", 4],
-        "vue/multi-word-component-names": "off",
-        "vue/html-self-closing": [
-            "error",
-            {
-                "html": {
-                    "void": "always",
-                    "component": "always"
-                }
-            }
-        ],
-        "vue/max-attributes-per-line": [
-            "error",
-            {
-                "singleline": 3,
-                "multiline": {
-                    "max": 1,
-                    "allowFirstLine": false
-                }
-            }
-        ],
-        "vue/component-name-in-template-casing": [
-            "error",
-            "PascalCase",
-            {
-                "registeredComponentsOnly": false,
-                "ignores": []
-            }
-        ],
-        "vue/singleline-html-element-content-newline": [
-            "error",
-            {
-                "ignoreWhenNoAttributes": true,
-                "ignoreWhenEmpty": true,
-                "ignores": ["pre", "textarea", "slot"],
-                "externalIgnores": []
-            }
-        ],
-        "vue/require-default-prop": "off",
-        "vue/require-prop-types": "off",
-
-        "@typescript-eslint/triple-slash-reference": "off",
-        "no-shadow": "off",
-        "semi": ["error", "always"],
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-non-null-assertion": "off",
         "camelcase": "off",
-        "radix": "off",
-        "@typescript-eslint/camelcase": "off",
-        "max-len": "off",
+        "class-methods-use-this": "off",
+        "default-case": "off",
+        "function-call-argument-newline": [
+            "error",
+            "never"
+        ],
+        "function-paren-newline": [
+            "error",
+            {
+                "minItems": 3
+            }
+        ],
         "import/extensions": "off",
+        "import/no-extraneous-dependencies": [
+            "off"
+        ],
         "import/no-unresolved": "off",
-        "import/prefer-default-export": "off",
         "import/order": [
             "error",
             {
                 "alphabetize": {
-                    "order": "asc",
-                    "caseInsensitive": true
+                    "caseInsensitive": true,
+                    "order": "asc"
                 }
             }
         ],
-        "class-methods-use-this": "off",
-        "no-return-assign": "off",
+        "import/prefer-default-export": "off",
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": "off",
+        "lines-between-class-members": "off",
+        "max-classes-per-file": "off",
+        "max-len": "off",
+        "multiline-comment-style": [
+            "error",
+            "starred-block"
+        ],
         "newline-after-var": "off",
         "newline-per-chained-call": [
             "error",
@@ -111,48 +88,46 @@
                 "ignoreChainWithDepth": 3
             }
         ],
-        "no-param-reassign": "off",
         "no-explicit-any": "off",
+        "no-nested-ternary": "off",
+        "no-param-reassign": "off",
+        "no-prototype-builtins": "off",
+        "no-restricted-syntax": "off",
+        "no-return-assign": "off",
+        "no-shadow": "off",
+        "no-trailing-spaces": "off",
+        "no-underscore-dangle": "off",
+        "no-use-before-define": "off",
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "next": "if",
+                "prev": "if"
+            }
+        ],
         "prefer-destructuring": [
             "warn",
             {
-                "object": false,
-                "array": false
+                "array": false,
+                "object": false
             },
             {
                 "enforceForRenamedProperties": false
             }
         ],
-        "linebreak-style": "off",
-        "lines-between-class-members": "off",
-        "no-restricted-syntax": "off",
-        "default-case": "off",
-        "max-classes-per-file": "off",
-        "no-underscore-dangle": "off",
-        "no-trailing-spaces": "off",
-        "padding-line-between-statements": [
+        "quotes": ["error", "double"],
+        "radix": "off",
+        "semi": [
             "error",
-            {
-                "blankLine": "always",
-                "prev": "if",
-                "next": "if"
-            }
+            "always"
         ],
-        "no-prototype-builtins": "off",
-        "spaced-comment": "off",
         "space-after-function-name": "off",
-        "vue/html-quotes": ["error", "double", { "avoidEscape": false }],
-        "vue/multiline-html-element-content-newline": [
-            "error",
-            {
-                "ignoreWhenEmpty": true,
-                "ignores": [],
-                "allowEmptyLines": false
-            }
-        ],
+        "spaced-comment": "off",
         "vue/attributes-order": [
             "error",
             {
+                "alphabetical": false,
                 "order": [
                     "DEFINITION",
                     "LIST_RENDERING",
@@ -165,13 +140,79 @@
                     "OTHER_ATTR",
                     "EVENTS",
                     "CONTENT"
-                ],
-                "alphabetical": false
+                ]
             }
         ],
-        "vue/no-v-for-template-key": "off",
+        "vue/component-name-in-template-casing": [
+            "error",
+            "PascalCase",
+            {
+                "ignores": [],
+                "registeredComponentsOnly": false
+            }
+        ],
+        "vue/dot-notation": "error",
+        "vue/eqeqeq": [
+            "error",
+            "always"
+        ],
+        "vue/html-indent": [
+            "error",
+            4
+        ],
+        "vue/html-quotes": [
+            "error",
+            "double",
+            {
+                "avoidEscape": false
+            }
+        ],
+        "vue/html-self-closing": [
+            "error",
+            {
+                "html": {
+                    "component": "always",
+                    "void": "always"
+                }
+            }
+        ],
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "multiline": {
+                    "max": 1
+                },
+                "singleline": {
+                    "max": 3
+                }
+            }
+        ],
+        "vue/multi-word-component-names": "off",
+        "vue/multiline-html-element-content-newline": [
+            "error",
+            {
+                "allowEmptyLines": false,
+                "ignores": [],
+                "ignoreWhenEmpty": true
+            }
+        ],
+        "vue/no-deprecated-slot-attribute": "off",
         "vue/no-multiple-template-root": "off",
-        "no-use-before-define": "off",
-        "vue/no-deprecated-slot-attribute": "off"
+        "vue/no-v-for-template-key": "off",
+        "vue/require-default-prop": "off",
+        "vue/require-prop-types": "off",
+        "vue/singleline-html-element-content-newline": [
+            "error",
+            {
+                "externalIgnores": [],
+                "ignores": [
+                    "pre",
+                    "textarea",
+                    "slot"
+                ],
+                "ignoreWhenEmpty": true,
+                "ignoreWhenNoAttributes": true
+            }
+        ]
     }
 }

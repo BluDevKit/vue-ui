@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluToggle from './BluToggle.vue';
+import BluToggle from "./BluToggle.vue";
 
 const meta: Meta<typeof BluToggle> = {
-    title: 'BluToggle',
+    title: "BluToggle",
     component: BluToggle,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'checkbox',
-        label: 'Checkbox',
+        id: "checkbox",
+        label: "Checkbox",
     },
 };
 

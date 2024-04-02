@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { mergeClasses } from "@/utils/tailwindMerge";
-import { usePaddingSizes } from "@/composables/paddingSizes";
 import { computed } from "vue";
 import CircleSvg from "./CircleSvg.vue";
+import { usePaddingSizes } from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 export interface BluProgressProps {
     /**
@@ -85,14 +85,12 @@ const props = withDefaults(defineProps<BluProgressProps>(), {
 // }
 
 // defineSlots<BluProgressSlots>();
-
-const progress = computed(() => {
-    return props.progressValue > 100
+const progress = computed(() => (
+    props.progressValue > 100
         ? 100
         : Math.round(props.progressValue) < 0
-          ? 0
-          : Math.round(props.progressValue);
-});
+            ? 0
+            : Math.round(props.progressValue)));
 </script>
 
 <template>

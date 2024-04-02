@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluTextarea from './BluTextarea.vue';
+import BluTextarea from "./BluTextarea.vue";
 
 const meta: Meta<typeof BluTextarea> = {
-    title: 'BluTextarea',
+    title: "BluTextarea",
     component: BluTextarea,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'textarea',
-        label: 'Textarea Label',
-        size: 'md',
+        id: "textarea",
+        label: "Textarea Label",
+        size: "md",
     },
 };
 

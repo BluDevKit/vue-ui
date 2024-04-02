@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge';
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluCheckboxProps {
     /**
@@ -20,7 +20,7 @@ interface BluCheckboxProps {
     /**
      * Label location
      */
-    labelLocation?: 'top' | 'right';
+    labelLocation?: "top" | "right";
 
     /**
      * checkbox value
@@ -44,7 +44,7 @@ interface BluCheckboxProps {
 }
 
 withDefaults(defineProps<BluCheckboxProps>(), {
-    labelLocation: 'right',
+    labelLocation: "right",
     modelValue: false,
 });
 

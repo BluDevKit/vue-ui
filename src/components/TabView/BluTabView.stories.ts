@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluTabView from './BluTabView.vue';
-import { tabs } from '../helpers';
+import { tabs } from "../helpers";
+import BluTabView from "./BluTabView.vue";
 
 const meta: Meta<typeof BluTabView> = {
-    title: 'BluTabView',
+    title: "BluTabView",
     component: BluTabView,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
         options: tabs,
         activeTabIndex: 0,

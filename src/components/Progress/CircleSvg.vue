@@ -2,33 +2,28 @@
 import { computed, onMounted, ref } from "vue";
 import { BluProgressProps } from "./BluProgress.vue";
 
-const props = withDefaults(
-    defineProps<
-        Pick<
-            BluProgressProps,
-            | "progressValue"
-            | "progressUnit"
-            | "unitLocation"
-            | "progressColor"
-            | "gradientColors"
-            | "progressBackground"
-            | "progressWidth"
-            | "showCompleteMark"
+const props = withDefaults(defineProps<
+    Pick<
+        BluProgressProps,
+        | "progressValue"
+        | "progressUnit"
+        | "unitLocation"
+        | "progressColor"
+        | "gradientColors"
+        | "progressBackground"
+        | "progressWidth"
+        | "showCompleteMark"
         >
-    >(),
-    {
-        progressValue: 0,
-        progressUnit: "%",
-        progressColor: "var(--default-color)",
-        progressBackground: "var(--default-background)",
-        progressWidth: "var(--default-width)",
-    }
-);
+    >(), {
+    progressValue: 0,
+    progressUnit: "%",
+    progressColor: "var(--default-color)",
+    progressBackground: "var(--default-background)",
+    progressWidth: "var(--default-width)",
+});
 const fullCircle = 478;
 
-const stylingWidth = computed(
-    () => fullCircle - (fullCircle * props.progressValue) / 100
-);
+const stylingWidth = computed(() => fullCircle - (fullCircle * props.progressValue) / 100);
 
 const circles = ref<HTMLElement | null>(null);
 onMounted(() => {

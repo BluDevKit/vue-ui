@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluCheckbox from './BluCheckbox.vue';
+import BluCheckbox from "./BluCheckbox.vue";
 
 const meta: Meta<typeof BluCheckbox> = {
-    title: 'BluCheckbox',
+    title: "BluCheckbox",
     component: BluCheckbox,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'checkbox',
-        label: 'Checkbox',
+        id: "checkbox",
+        label: "Checkbox",
     },
 };
 

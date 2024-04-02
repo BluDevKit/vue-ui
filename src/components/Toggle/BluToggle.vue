@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge';
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluCheckboxProps {
     /**
@@ -15,7 +15,7 @@ interface BluCheckboxProps {
     /**
      * size of the button
      */
-    size: 'sm' | 'md' | 'lg';
+    size: "sm" | "md" | "lg";
 
     /**
      * label of input field
@@ -35,7 +35,7 @@ interface BluCheckboxProps {
     /**
      * Label location
      */
-    labelLocation?: 'top' | 'right' | 'left';
+    labelLocation?: "top" | "right" | "left";
 
     /**
      * model value of input field
@@ -59,11 +59,11 @@ interface BluCheckboxProps {
 }
 
 const props = withDefaults(defineProps<BluCheckboxProps>(), {
-    size: 'sm',
-    labelLocation: 'top',
+    size: "sm",
+    labelLocation: "top",
     modelValue: false,
-    onText: 'On',
-    offText: 'Off',
+    onText: "On",
+    offText: "Off",
 });
 
 const model = defineModel();

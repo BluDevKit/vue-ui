@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluButton from './BluButton.vue';
+import BluButton from "./BluButton.vue";
 
 const meta: Meta<typeof BluButton> = {
-    title: 'BluButton',
+    title: "BluButton",
     component: BluButton,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        default: 'Button',
-        size: 'md',
+        default: "Button",
+        size: "md",
     },
 };
 

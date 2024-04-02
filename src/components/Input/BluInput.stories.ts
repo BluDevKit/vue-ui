@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluInput from './BluInput.vue';
+import BluInput from "./BluInput.vue";
 
 const meta: Meta<typeof BluInput> = {
-    title: 'BluInput',
+    title: "BluInput",
     component: BluInput,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'input',
-        label: 'Label',
-        placeholder: 'Placeholder',
+        id: "input",
+        label: "Label",
+        placeholder: "Placeholder",
     },
 };
 
@@ -21,28 +21,28 @@ type Story = StoryObj<typeof BluInput>;
  */
 export const Basic: Story = {
     args: {
-        id: 'input',
-        label: 'Label',
-        placeholder: 'Placeholder',
+        id: "input",
+        label: "Label",
+        placeholder: "Placeholder",
     },
 };
 
 export const Password: Story = {
     args: {
-        modelValue: 'password',
-        type: 'password',
+        modelValue: "password",
+        type: "password",
     },
 };
 
 export const Search: Story = {
     args: {
-        type: 'search',
+        type: "search",
     },
 };
 
 export const PrefixSuffix: Story = {
     args: {
-        prefix: '+31',
-        suffix: '€',
+        prefix: "+31",
+        suffix: "€",
     },
 };

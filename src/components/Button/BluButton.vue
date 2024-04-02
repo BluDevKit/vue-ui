@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { mergeClasses } from "@/utils/tailwindMerge";
 import { usePaddingSizes } from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluButtonProps {
     /**

@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import { usePaddingSizes, usePaddingSizePosition } from '@/composables/paddingSizes';
-import { mergeClasses } from '@/utils/tailwindMerge';
-import { computed, reactive } from 'vue';
+import { computed, reactive } from "vue";
+import {
+    usePaddingSizes,
+    usePaddingSizePosition,
+} from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluInputProps {
     /**
@@ -27,7 +30,7 @@ interface BluInputProps {
     /**
      * size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg';
+    size?: "xs" | "sm" | "md" | "lg";
 
     /**
      * classes to overwrite classes for the button
@@ -37,7 +40,15 @@ interface BluInputProps {
     /**
      * type of input field
      */
-    type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url' | 'hidden';
+    type?:
+        | "email"
+        | "number"
+        | "password"
+        | "search"
+        | "tel"
+        | "text"
+        | "url"
+        | "hidden";
 
     /**
      * model value of input field
@@ -86,8 +97,8 @@ interface BluInputProps {
 }
 
 const props = withDefaults(defineProps<BluInputProps>(), {
-    type: 'text',
-    size: 'md',
+    type: "text",
+    size: "md",
     showLabel: true,
 });
 
@@ -95,30 +106,30 @@ interface BluInputEmits {
     /**
      * Event emitted when input is focused
      */
-    (event: 'inputFocus', $event: FocusEvent, id: string): void;
+    (event: "inputFocus", $event: FocusEvent, id: string): void;
     /**
      * Event emitted when input is changed
      */
-    (event: 'inputChange', $event: Event, id: string): void;
+    (event: "inputChange", $event: Event, id: string): void;
     /**
      * Event emitted when input is blurred
      */
-    (event: 'inputBlur', $event: Event, id: string): void;
+    (event: "inputBlur", $event: Event, id: string): void;
     /**
      * Event emitted when input is keyup
      */
-    (event: 'inputKeyUp', $event: KeyboardEvent, id: string): void;
+    (event: "inputKeyUp", $event: KeyboardEvent, id: string): void;
     /**
      * Event emitted when input is focused
      */
-    (event: 'prefixClick', $event: Event, id: string): void;
+    (event: "prefixClick", $event: Event, id: string): void;
     /**
      * Event emitted when input is focused
      */
-    (event: 'suffixClick', $event: Event, id: string): void;
+    (event: "suffixClick", $event: Event, id: string): void;
 }
 
-const emit = defineEmits<BluInputEmits>();
+defineEmits<BluInputEmits>();
 
 interface bluInputSlots {
     /**
@@ -147,7 +158,7 @@ interface bluInputSlots {
     suffix?: string;
 }
 
-const slots = defineSlots<bluInputSlots>();
+defineSlots<bluInputSlots>();
 
 const model = defineModel();
 
@@ -159,9 +170,7 @@ const togglePassword = () => {
     state.showPassword = !state.showPassword;
 };
 
-const dynamicType = computed(() => {
-    return props.type === 'password' && state.showPassword ? 'text' : props.type;
-});
+const dynamicType = computed(() => (props.type === "password" && state.showPassword ? "text" : props.type));
 </script>
 
 <template>
@@ -219,7 +228,7 @@ const dynamicType = computed(() => {
                         :class="usePaddingSizePosition(size).value"
                         @click="togglePassword"
                     >
-                        {{ state.showPassword ? 'Hide' : 'Show' }}
+                        {{ state.showPassword ? "Hide" : "Show" }}
                     </span>
 
                     <Transition name="search">
@@ -262,10 +271,10 @@ const dynamicType = computed(() => {
     opacity: 0;
 }
 
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
 }
 </style>

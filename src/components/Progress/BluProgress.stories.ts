@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluProgress from './BluProgress.vue';
-import { useTailwindTheme } from '@/utils/tailwindTheme';
+import BluProgress from "./BluProgress.vue";
+import { useTailwindTheme } from "@/utils/tailwindTheme";
 
 const hours = new Date().getHours();
 const hoursInPercent = (hours / 24) * 100;
 
 const meta: Meta<typeof BluProgress> = {
-    title: 'BluProgress',
+    title: "BluProgress",
     component: BluProgress,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        label: 'Day completed',
-        size: 'md',
+        label: "Day completed",
+        size: "md",
         progressValue: hoursInPercent,
     },
 };
@@ -28,30 +28,28 @@ export const Gradient: Story = {
     args: {
         gradientColors: [
             {
-                offset: '0%',
+                offset: "0%",
                 stopColor: useTailwindTheme().colors.blu[600],
             },
             {
-                offset: '100%',
+                offset: "100%",
                 stopColor: useTailwindTheme().colors.red[400],
             },
-        ]
+        ],
     },
 };
 
 export const Completed: Story = {
     args: {
-        label: 'Completed',
+        label: "Completed",
         progressValue: 100,
     },
 };
 
 export const CompletedWithMark: Story = {
     args: {
-        label: 'Completed',
+        label: "Completed",
         progressValue: 100,
         showCompleteMark: true,
     },
 };
-
-

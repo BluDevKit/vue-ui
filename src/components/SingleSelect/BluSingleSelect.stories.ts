@@ -1,30 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluSingleSelect from './BluSingleSelect.vue';
+import BluSingleSelect from "./BluSingleSelect.vue";
 
 const meta: Meta<typeof BluSingleSelect> = {
-    title: 'BluSingleSelect',
+    title: "BluSingleSelect",
     component: BluSingleSelect,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'select',
-        label: 'Select Label',
+        id: "select",
+        label: "Select Label",
         options: [
             {
-                value: '1',
-                label: 'Option 1',
+                value: "1",
+                label: "Option 1",
             },
             {
-                value: '2',
-                label: 'Option 2',
+                value: "2",
+                label: "Option 2",
             },
             {
-                value: '3',
-                label: 'Option 3',
+                value: "3",
+                label: "Option 3",
             },
             {
-                value: '4',
-                label: 'Option 4',
+                value: "4",
+                label: "Option 4",
             },
         ],
     },
@@ -38,6 +38,6 @@ type Story = StoryObj<typeof BluSingleSelect>;
  */
 export const Basic: Story = {
     args: {
-        default: 'Button',
+        default: "Button",
     },
 };

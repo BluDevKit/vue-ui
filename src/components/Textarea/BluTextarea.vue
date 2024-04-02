@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { usePaddingSizes } from '@/composables/paddingSizes';
-import { mergeClasses } from '@/utils/tailwindMerge';
+import { usePaddingSizes } from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluTextareaProps {
     /**
@@ -21,7 +21,7 @@ interface BluTextareaProps {
     /**
      * size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
 
     /**
      * classes to overwrite classes for the button
@@ -70,7 +70,7 @@ interface BluTextareaProps {
 }
 
 const props = withDefaults(defineProps<BluTextareaProps>(), {
-    size: 'md',
+    size: "md",
     fullWidth: true,
 });
 </script>

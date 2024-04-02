@@ -1,5 +1,5 @@
-import { expect, describe, it } from "vitest";
 import { mount } from "@vue/test-utils";
+import { expect, describe, it } from "vitest";
 import BluProgress from "./BluProgress.vue";
 
 describe("Button", () => {

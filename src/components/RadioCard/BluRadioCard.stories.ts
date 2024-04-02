@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluRadioCard from './BluRadioCard.vue';
+import BluRadioCard from "./BluRadioCard.vue";
 
 const meta: Meta<typeof BluRadioCard> = {
-    title: 'BluRadioCard',
+    title: "BluRadioCard",
     component: BluRadioCard,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'radio-card',
-        default: 'Radio Card',
-        ariaLabel: 'Radio Card',
-        size: 'md',
+        id: "radio-card",
+        default: "Radio Card",
+        ariaLabel: "Radio Card",
+        size: "md",
     },
 };
 

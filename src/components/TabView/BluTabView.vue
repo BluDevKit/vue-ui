@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed, defineAsyncComponent, ref } from 'vue';
-import { BluButton } from '@/components/Button';
+import { computed, defineAsyncComponent, ref } from "vue";
+import { BluButton } from "@/components/Button";
 
 interface BluTabViewProps {
     /**
@@ -26,15 +26,14 @@ interface Emits {
     /**
      * Emits the name of the component that is active
      */
-    (event: 'change', componentName: string): void;
+    (event: "change", componentName: string): void;
 }
 
 const emit = defineEmits<Emits>();
 const dynamicComponents = props.options.map((option) => ({
-    component: defineAsyncComponent(() =>
-        new Promise((resolve) => {
-            resolve(option.component);
-        })),
+    component: defineAsyncComponent(() => new Promise((resolve) => {
+        resolve(option.component);
+    })),
 }));
 
 const activeTabIndex = ref(props.activeTabIndex);
@@ -42,7 +41,7 @@ const activeTabIndex = ref(props.activeTabIndex);
 const currentTab = computed(() => dynamicComponents[activeTabIndex.value]);
 function switchTabs(index: number, name: string) {
     activeTabIndex.value = index;
-    emit('change', name);
+    emit("change", name);
 }
 </script>
 

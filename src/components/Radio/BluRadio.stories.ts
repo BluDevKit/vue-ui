@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluRadio from './BluRadio.vue';
+import BluRadio from "./BluRadio.vue";
 
 const meta: Meta<typeof BluRadio> = {
-    title: 'BluRadio',
+    title: "BluRadio",
     component: BluRadio,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     args: {
-        id: 'radio',
-        label: 'Radio',
-        name: 'radio',
+        id: "radio",
+        label: "Radio",
+        name: "radio",
     },
 };
 

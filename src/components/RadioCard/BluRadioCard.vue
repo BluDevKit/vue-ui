@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { usePaddingSizes } from '@/composables/paddingSizes';
-import { mergeClasses } from '@/utils/tailwindMerge';
+import { usePaddingSizes } from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluRadioCardProps {
     /**
@@ -21,12 +21,12 @@ interface BluRadioCardProps {
     /**
      * size of the button
      */
-    size?: 'sm' | 'md' | 'lg';
+    size?: "sm" | "md" | "lg";
 
     /**
      * type of the button
      */
-    type?: 'button' | 'submit' | 'reset';
+    type?: "button" | "submit" | "reset";
 
     /**
      * classes to overwrite classes for the button
@@ -50,8 +50,8 @@ interface BluRadioCardProps {
 }
 
 withDefaults(defineProps<BluRadioCardProps>(), {
-    type: 'button',
-    size: 'md',
+    type: "button",
+    size: "md",
 });
 
 interface BluRadioCardSlots {

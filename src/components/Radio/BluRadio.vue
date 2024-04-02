@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mergeClasses } from '@/utils/tailwindMerge';
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluRadioProps {
     /**
@@ -20,7 +20,7 @@ interface BluRadioProps {
     /**
      * Label location
      */
-    labelLocation?: 'top' | 'right' | 'bottom';
+    labelLocation?: "top" | "right" | "bottom";
 
     /**
      * checkbox value
@@ -44,10 +44,10 @@ interface BluRadioProps {
 }
 
 withDefaults(defineProps<BluRadioProps>(), {
-    size: 'md',
-    labelLocation: 'right',
+    size: "md",
+    labelLocation: "right",
     modelValue: true,
-    value: '',
+    value: "",
 });
 
 const model = defineModel();

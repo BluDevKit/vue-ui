@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { BluInput, BluButton } from '@/components';
-import { usePaddingSizes } from '@/composables/paddingSizes';
-import { mergeClasses } from '@/utils/tailwindMerge';
-import { computed, ref } from 'vue';
-import { onClickOutside, onKeyStroke } from '@vueuse/core';
+import { onClickOutside, onKeyStroke } from "@vueuse/core";
+import { computed, ref } from "vue";
+import { BluInput, BluButton } from "@/components";
+import { usePaddingSizes } from "@/composables/paddingSizes";
+import { mergeClasses } from "@/utils/tailwindMerge";
 
 interface BluSingleSelectProps {
     /**
@@ -98,8 +98,8 @@ defineSlots<BluSingleSelectSlots>();
 
 const selectOptions = ref(null);
 const showOptions = ref(false);
-const search = ref('');
-const selected = ref('');
+const search = ref("");
+const selected = ref("");
 const model = defineModel();
 
 const selectItem = (item: { value: string; label: string }) => {
@@ -112,19 +112,15 @@ const toggleOptions = () => {
     showOptions.value = !showOptions.value;
 };
 
-const filteredOptions = computed(() => {
-    return props.options.filter((item) => {
-        return item.label.toLowerCase().includes(search.value.toLowerCase());
-    });
-});
+const filteredOptions = computed(() => props.options.filter((item) => item.label.toLowerCase().includes(search.value.toLowerCase())));
 
 onClickOutside(selectOptions, (e) => {
-    if (props.id === (e.target as HTMLElement)?.id || (e.target as HTMLElement)?.id === 'select-search') {
+    if (props.id === (e.target as HTMLElement)?.id || (e.target as HTMLElement)?.id === "select-search") {
         return;
     }
     showOptions.value = false;
 });
-onKeyStroke('Escape', () => {
+onKeyStroke("Escape", () => {
     if (showOptions.value) {
         showOptions.value = false;
     }
