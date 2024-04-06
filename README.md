@@ -9,8 +9,13 @@ Blu Dev Kit is a collection of tools and libraries for developing Vue3 applicati
 You can install `@bludevkit/vue-ui` via npm or yarn:
 
 ```bash
+# npm
 npm install @bludevkit/vue-ui
-# or
+
+# bun 
+bun add @bludevkit/vue-ui
+
+# yarn
 yarn add @bludevkit/vue-ui
 ```
 
@@ -46,3 +51,6 @@ const handleClick = () => {
 - BluTabView
 - BluToast
 - BluToggle
+
+## Module list
+- BluLogin
