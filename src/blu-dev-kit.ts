@@ -11,3 +11,4 @@ const install: Exclude<Plugin["install"], undefined> = (app: App) => {
 
 export default install;
 export * from "@/components/index";
+export * from "@/modules/index";
