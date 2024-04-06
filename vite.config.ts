@@ -1,25 +1,25 @@
-import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
+import { resolve } from "path";
+import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 export default defineConfig({
     build: {
         lib: {
             entry: [
-                resolve(__dirname, './src/blu-dev-kit.ts'),
-                resolve(__dirname, './src/utils.ts'),
+                resolve(__dirname, "./src/blu-dev-kit.ts"),
+                resolve(__dirname, "./src/utils.ts"),
             ],
-            formats: ['es', 'cjs'],
+            formats: ["es", "cjs"],
         },
         rollupOptions: {
-            external: ['vue'],
+            external: ["vue"],
             output: {
                 globals: {
-                    vue: 'Vue',
+                    vue: "Vue",
                 },
-                exports: 'named',
+                exports: "named",
             },
         },
         emptyOutDir: true,
@@ -33,10 +33,10 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': resolve(__dirname, './src'),
-            '@interfaces': resolve(__dirname, './interfaces'),
-            '@public': resolve(__dirname, './public'),
+            "@": resolve(__dirname, "./src"),
+            "@interfaces": resolve(__dirname, "./interfaces"),
+            "@public": resolve(__dirname, "./public"),
         },
-        extensions: ['.ts', '.vue', '.json', '.js'],
+        extensions: [".ts", ".vue", ".json", ".js"],
     },
 });
