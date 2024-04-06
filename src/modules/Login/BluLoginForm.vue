@@ -4,13 +4,17 @@ import { BluButton, BluInput } from "@/components";
 
 interface BluLoginFormProps {
     /**
+     * Title of the form
+     */
+    formTitle?: string;
+    /**
      * submit text
      */
     submitText?: string; 
 }
 
 withDefaults(defineProps<BluLoginFormProps>(), {
-    size: "md",
+    formTitle: "Login form",
     submitText: "Login",
 });
 
@@ -22,6 +26,16 @@ interface BluInputEmits {
 }
 
 const emit = defineEmits<BluInputEmits>();
+
+interface BluLoginFormSlots {
+    /**
+     * Slot top of the form
+     */
+    formHeader: any;
+}
+
+defineSlots<BluLoginFormSlots>();
+
 const form = reactive({
     email: "",
     password: "",
@@ -33,8 +47,13 @@ const submitForm = () => {
 </script>
 
 <template>
-    <section>
-        <form class="flex flex-col gap-4" @submit.prevent="submitForm">
+    <section class="flex flex-col max-w-lg gap-4 mx-auto">
+        <slot name="formHeader">
+            <h1 class="text-2xl font-bold">
+                {{ formTitle }}
+            </h1>
+        </slot>
+        <form class="flex flex-col gap-2" @submit.prevent="submitForm">
             <BluInput id="email" v-model="form.email" label="Email" />
             <BluInput
                 id="password"
