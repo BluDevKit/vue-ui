@@ -53,9 +53,9 @@
         "storybook:build:serve": "bun run storybook:build && bun run storybook:serve-build",
         "release": "commit-and-tag-version",
         "publish-release": "git push --follow-tags origin main && npm publish",
-        "release:patch": "bun run release -- --release-as patch && bun run publish-release",
-        "release:minor": "bun run release -- --release-as minor && bun run publish-release",
-        "release:major": "bun run release -- --release-as major && bun run publish-release",
+        "release:patch": "npm run build && bun run release -- --release-as patch && bun run publish-release",
+        "release:minor": "npm run build && bun run release -- --release-as minor && bun run publish-release",
+        "release:major": "npm run build && bun run release -- --release-as major && bun run publish-release",
         "test": "echo \"Error: no test specified\"",
         "lint": "eslint --ext .ts,.vue src",
         "lint:fix": "bun run lint -- --fix"
