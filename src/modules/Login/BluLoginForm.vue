@@ -35,8 +35,13 @@ const submitForm = () => {
 <template>
     <section>
         <form class="flex flex-col gap-4" @submit.prevent="submitForm">
-            <BluInput id="email" label="Email" />
-            <BluInput id="password" label="Password" />
+            <BluInput id="email" v-model="form.email" label="Email" />
+            <BluInput
+                id="password"
+                v-model="form.password"
+                label="Password"
+                type="password"
+            />
             <BluButton type="submit">
                 {{ submitText }}
             </BluButton>
