@@ -174,7 +174,7 @@ const dynamicType = computed(() => (props.type === "password" && state.showPassw
 </script>
 
 <template>
-    <section class="relative flex flex-col gap-1">
+    <section class="relative flex flex-col gap-1 grow">
         <label v-if="showLabel" :for="id">
             {{ label }}
         </label>

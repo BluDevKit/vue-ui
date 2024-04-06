@@ -41,3 +41,9 @@ export const Basic: Story = {
         default: "Button",
     },
 };
+
+export const Searchable: Story = {
+    args: {
+        showSearch: true,
+    },
+};

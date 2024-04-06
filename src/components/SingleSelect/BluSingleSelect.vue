@@ -96,16 +96,23 @@ interface BluSingleSelectSlots {
 
 defineSlots<BluSingleSelectSlots>();
 
-const selectOptions = ref(null);
-const showOptions = ref(false);
-const search = ref("");
-const selected = ref("");
 const model = defineModel();
+const selected = ref("");
+const search = ref("");
+const selectSearch = ref(null);
+const selectOptions = ref<HTMLElement | null>(null);
+const showOptions = ref(false);
+const focusIndex = ref(0);
+const usingArrows = ref(false);
 
-const selectItem = (item: { value: string; label: string }) => {
+const selectItem = (item: { value: string | null; label: string; closeOptions: boolean }) => {
     model.value = item.value;
     selected.value = item.label;
-    showOptions.value = false;
+    focusIndex.value = 0;
+    
+    if (item.closeOptions) {
+        showOptions.value = false;
+    }
 };
 
 const toggleOptions = () => {
@@ -115,7 +122,7 @@ const toggleOptions = () => {
 const filteredOptions = computed(() => props.options.filter((item) => item.label.toLowerCase().includes(search.value.toLowerCase())));
 
 onClickOutside(selectOptions, (e) => {
-    if (props.id === (e.target as HTMLElement)?.id || (e.target as HTMLElement)?.id === "select-search") {
+    if (props.id === (e.target as HTMLElement)?.id || (e.target as HTMLElement)?.id === "select-search" || (e.target as HTMLElement)?.id === "clear-selection") {
         return;
     }
     showOptions.value = false;
@@ -125,6 +132,41 @@ onKeyStroke("Escape", () => {
         showOptions.value = false;
     }
 });
+
+const setFocus = () => {
+    const currentOption = selectOptions.value?.querySelector(`li:nth-child(${focusIndex.value}) button`);
+    (currentOption as HTMLButtonElement)?.focus();
+};
+
+onKeyStroke(["ArrowLeft", "ArrowUp"], () => {
+    if (showOptions.value) {
+        const index = focusIndex.value - 1;
+        focusIndex.value = index < 1 ? filteredOptions.value.length : index;
+        setFocus();
+        usingArrows.value = true;
+    }
+});
+
+onKeyStroke(["ArrowRight", "ArrowDown"], () => {
+    if (showOptions.value) {
+        // update focusIndex correctly
+        const index = focusIndex.value + 1;
+        focusIndex.value = index > filteredOptions.value.length ? 1 : index;
+
+        setFocus();
+        usingArrows.value = true;
+    }
+});
+
+onKeyStroke("Tab", () => {
+    if (showOptions.value) {
+        if (focusIndex.value === filteredOptions.value.length) {
+            toggleOptions();
+        }
+        usingArrows.value = false;
+    }
+});
+
 </script>
 
 <template>
@@ -132,45 +174,54 @@ onKeyStroke("Escape", () => {
         <label :for="id" class="block text-sm font-medium text-gray-700">
             {{ label }}
         </label>
-        <BluButton
-            :id="id"
-            :name="name"
-            :disabled="disabled"
-            class="bg-transparent border border-black"
-            @click="toggleOptions"
-        >
-            {{ selected || 'Select' }}
-        </BluButton>
+        <div class="flex gap-1">
+            <BluButton
+                :id="id"
+                :name="name"
+                :disabled="disabled"
+                class="bg-transparent border border-black grow"
+                @click="toggleOptions"
+            >
+                {{ selected || 'Select' }}
+            </BluButton>
+            <BluButton
+                v-if="selected"
+                id="clear-selection"
+                size="sm"
+                class="bg-red-400 grow-0"
+                :full-width="false"
+                @click="selectItem({ value: null, label: '', closeOptions: false})"
+            >
+                Clear selection
+            </BluButton>
+        </div>
 
         <Transition name="options">
             <div v-if="showOptions" class="flex flex-col gap-1">
-                <BluInput
-                    v-if="options.length > 3 && showSearch"
-                    id="select-search"
-                    v-model="search"
-                    label="search"
-                    type="search"
-                    :show-label="false"
-                    tw-classes="w-full"
-                />
+                <section v-if="options.length > 3 && showSearch" class="flex gap-1 grow-1">
+                    <BluInput
+                        id="select-search"
+                        ref="selectSearch"
+                        v-model="search"
+                        label="search"
+                        type="search"
+                        :show-label="false"
+                        tw-classes="w-full"
+                    />
+                </section>
                 <div
                     ref="selectOptions"
                     class="w-full shadow-sm"
                     :class="mergeClasses([usePaddingSizes('md').value], 'p-0')"
                 >
                     <ul class="z-10 flex flex-col w-full gap-1 p-2 bg-white rounded-md shadow-lg">
-                        <li>
-                            <BluButton size="sm" :full-width="true" @click="selectItem({ value: '', label: '' })">
-                                Clear selection
-                            </BluButton>
-                        </li>
                         <li v-for="(item, index) in filteredOptions" :key="item.value" :value="item.value">
                             <BluButton
                                 size="sm"
                                 :class="[model === item.value ? 'bg-blu-500 font-bold' : 'bg-slate-100']"
                                 :full-width="true"
-                                @click="selectItem(item)"
-                                @blur="index === options.length - 1 && toggleOptions()"
+                                @click="selectItem({ ...item, closeOptions: true })"
+                                @blur="index === options.length - 1 && !usingArrows && toggleOptions()"
                             >
                                 {{ item.label }}
                             </BluButton>
