@@ -36,6 +36,7 @@ const handleClick = () => {
 - BluButton
 - BluCheckbox
 - BluInput
+- BluMultiSelect
 - BluProgress
 - BluRadio
 - BluRadioCard
