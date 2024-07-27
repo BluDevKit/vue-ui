@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 
-import BluButton from "./BluButton.vue";
+import { BluButton } from "../Button";
 
 const meta: Meta<typeof BluButton> = {
     title: "BluButton",
