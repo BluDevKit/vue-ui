@@ -11,8 +11,7 @@ const config: StorybookConfig = {
         },
     },
     docs: {
-        autodocs: "tag",
-        docsMode: false,
+        docsMode: false
     },
     stories: [
         {
@@ -35,6 +34,7 @@ const config: StorybookConfig = {
         "@storybook/addon-essentials",
         "@storybook/addon-interactions",
         "@storybook/addon-themes",
+        "@chromatic-com/storybook"
     ],
 };
 export default config;

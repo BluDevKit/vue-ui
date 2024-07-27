@@ -1,5 +1,5 @@
-import { addons } from '@storybook/manager-api';
-import { create } from '@storybook/theming';
+import { addons } from "@storybook/manager-api";
+import { create } from "@storybook/theming";
 
 addons.setConfig({
     sidebar: {
@@ -7,24 +7,24 @@ addons.setConfig({
     },
     theme: create({
         // Brand
-        base: 'light',
-        brandTitle: 'Blu Dev Kit',
-        brandUrl: 'https://www.ymaroblue.nl/',
-        brandImage: '/favicon-32x32.png',
+        base: "light",
+        brandTitle: "Blu Dev Kit",
+        brandUrl: "https://www.ymaroblue.nl/",
+        brandImage: "/favicon-32x32.png",
 
         // Colors
-        colorPrimary: 'blue',
-        colorSecondary: '#c1f516',
+        colorPrimary: "blue",
+        colorSecondary: "#ff0000",
 
         // UI
-        appBg: '#f4f4f4',
+        appBg: "#f4f4f4",
 
         // Typography
-        textInverseColor: 'black',
+        textInverseColor: "black",
 
         // Toolbar
-        barTextColor: '#ffffff',
-        barBg: '#121212',
+        barTextColor: "#ffffff",
+        barBg: "#121212",
 
         // Form colors
     }),

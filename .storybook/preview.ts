@@ -19,16 +19,12 @@ setup((app: App) => {
 
 const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
+        // actions: { argTypesRegex: "^on[A-Z].*" },
         options: {
             storySort: {
                 method: "configure",
                 includeNames: true,
-                order: [
-                    "Guide",
-                    ["What is Blu Dev Kit", "Getting Started"],
-                    "*",
-                ],
+                order: ["Guide", ["What is Blu Dev Kit", "Getting Started"], "*"],
             },
         },
         controls: {
